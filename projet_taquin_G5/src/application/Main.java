@@ -1,12 +1,14 @@
 package application;
 	
 import javafx.application.Application;
+import java.util.Scanner; 
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 
 
-public class Main extends Application {
+public class Main /*extends Application*/ {
+	/*
 	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -20,8 +22,19 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	}
+	*/
 	
 	public static void main(String[] args) {
-		launch(args);
+		//launch(args);
+		Grille grilleTest = new Grille(4);
+		grilleTest.afficherGrille();
+		Scanner sc = new Scanner(System.in); 
+		while(true) {
+	        char c = sc.next().charAt(0); 
+	        grilleTest.movePiece(c);
+	        if (grilleTest.isWon()) {
+	        	System.out.println("it's win");
+	        }
+		}
 	}
 }
