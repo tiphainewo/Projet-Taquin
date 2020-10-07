@@ -1,43 +1,41 @@
 package application;
 	
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-
 import java.util.Scanner; 
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
 
 
-public class Main extends Application {
-	
+public class Main /*extends Application*/ {
+	/*
+	@Override
 	public void start(Stage primaryStage) {
 		try {
-			Pane mainPane = (Pane) FXMLLoader.load(Main.class.getResource("Test.fxml"));
 			BorderPane root = new BorderPane();
-			//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			
-			primaryStage.setScene(new Scene(mainPane));
+			Scene scene = new Scene(root,400,400);
+			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			primaryStage.setScene(scene);
 			primaryStage.show();
+			System.out.println("hello");
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+	*/
 	
 	public static void main(String[] args) {
-		launch(args);
-		Timer chrono = new Timer();
+		//launch(args);
 		Grille grilleTest = new Grille(4);
 		grilleTest.afficherGrille();
 		Scanner sc = new Scanner(System.in); 
-		grilleTest.test();
-		//chrono.start();
-		/*while(true) {
-		
-        char c = sc.next().charAt(0); 
-        grilleTest.movePiece(c);
-		}*/
+		while(true) {
+	        char c = sc.next().charAt(0); 
+	        grilleTest.movePiece(c);
+	       
+	        if (grilleTest.isWon()) {
+	        	System.out.println("it's won");
+	        }
+		}
 	}
 }
