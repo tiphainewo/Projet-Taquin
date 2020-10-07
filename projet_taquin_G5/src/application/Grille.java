@@ -96,7 +96,11 @@ public class Grille {
 		case 's':
 			if (coordTrou[1] > 0) {
 				temp = tableau[coordTrou[0]][coordTrou[1]]; // récupère la pièce "vide"
+<<<<<<< HEAD
 				tableau[coordTrou[0]][coordTrou[1]] = tableau[coordTrou[0]][coordTrou[1] - 1]; // déplace la pièce
+=======
+				tableau[coordTrou[0]][coordTrou[1]] = tableau[coordTrou[0]][coordTrou[1] - 1]; // déplace la pièceyy
+>>>>>>> 26cf13eaf49fb56b5b50fd4b83c7ce5ab1eb90c8
 				tableau[coordTrou[0]][coordTrou[1] - 1] = temp; // met le trou à la place de la pièce déplacée
 				coordTrou[1]-=1;
 			}
@@ -114,8 +118,30 @@ public class Grille {
 
 	}
 
+<<<<<<< HEAD
 	public void test() {
 
 	}
 
 }
+=======
+	public boolean isWon() {
+		
+		boolean win = true;
+		
+		for(int i = 0 ; i < taille ; i++) {
+			for(int j = 0 ; j < taille ; j++) {
+					if ( !tableau[i][j].estEnPlace() ) {
+						win = false;
+						break;
+					}
+				}	
+			}
+		
+		return win;
+		
+		}
+	}
+
+
+>>>>>>> 26cf13eaf49fb56b5b50fd4b83c7ce5ab1eb90c8

@@ -23,6 +23,25 @@ public class Piece {
 		
 	}
 	
+<<<<<<< HEAD
+=======
+	public void setCoord(int[] tabCoord) {
+		coord[0] = tabCoord[0];
+		coord[1] = tabCoord[1];
+	}
+	
+	public int[] getCoord() {
+		return coord;
+	}
+	
+	public boolean estEnPlace() {
+		if (coord[0] == coordFinal[0] && coord[1] == coordFinal[1]) {
+			return true;
+			}
+		return false;
+	}
+	
+>>>>>>> 26cf13eaf49fb56b5b50fd4b83c7ce5ab1eb90c8
 	public String toString() {
 		if(id==15) {
 			return ("__");
