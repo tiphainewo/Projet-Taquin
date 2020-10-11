@@ -29,11 +29,13 @@ public class Main /*extends Application*/ {
 		Grille grilleTest = new Grille(4);
 		grilleTest.afficherGrille();
 		Scanner sc = new Scanner(System.in); 
-		grilleTest.test();
 		while(true) {
-		
-        char c = sc.next().charAt(0); 
-        grilleTest.movePiece(c);
+	        char c = sc.next().charAt(0); 
+	        grilleTest.movePiece(c);
+	       
+	        if (grilleTest.isWon()) {
+	        	System.out.println("it's won");
+	        }
 		}
 	}
 }

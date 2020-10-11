@@ -2,7 +2,6 @@ package application;
 
 public class Piece {
 
-	boolean[] coteLibre;
 	int[] coord = new int[2];
 	final int[] coordFinal = new int[2];
 	boolean vide;
@@ -19,12 +18,9 @@ public class Piece {
 		} else {
 			vide = false;
 		}
-		this.coteLibre = new boolean[]{false, false, false, false}; //haut, droite, bas, gauche
 		
 	}
 	
-<<<<<<< HEAD
-=======
 	public void setCoord(int[] tabCoord) {
 		coord[0] = tabCoord[0];
 		coord[1] = tabCoord[1];
@@ -35,13 +31,13 @@ public class Piece {
 	}
 	
 	public boolean estEnPlace() {
+		//System.out.println("id:"+id+"||"+coord[0] +","+ coord[1] +"|final "+ coordFinal[0] +", "+ coordFinal[1]);
 		if (coord[0] == coordFinal[0] && coord[1] == coordFinal[1]) {
 			return true;
 			}
 		return false;
 	}
 	
->>>>>>> 26cf13eaf49fb56b5b50fd4b83c7ce5ab1eb90c8
 	public String toString() {
 		if(id==15) {
 			return ("__");
@@ -56,9 +52,5 @@ public class Piece {
 		return(this.id);
 	}
 	
-	public void resetCoteLibre() {
-		this.coteLibre = new boolean[]{false, false, false, false};
-	}
-
 
 }

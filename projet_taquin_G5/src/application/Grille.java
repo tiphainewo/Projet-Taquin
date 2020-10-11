@@ -47,42 +47,18 @@ public class Grille {
 		}
 	}
 
-	public void checkCoteLibre() {
-
-		// Réinitialise le côté libre pour toutes les pièces
-		for (int i = 0; i < taille; i++) {
-			for (int j = 0; j < taille; j++) {
-				tableau[i][j].resetCoteLibre();
-			}
-		}
-
-		// Case à gauche du vide
-		if (coordTrou[0] > 0) {
-			tableau[coordTrou[0] - 1][coordTrou[1]].coteLibre = new boolean[] { false, true, false, false };
-		}
-		// Case à droite du vide
-		if (coordTrou[0] < 3) {
-			tableau[coordTrou[0] + 1][coordTrou[1]].coteLibre = new boolean[] { false, false, false, true };
-		}
-		// Case en haut du vide
-		if (coordTrou[1] > 0) {
-			tableau[coordTrou[0]][coordTrou[1] - 1].coteLibre = new boolean[] { false, false, true, false };
-		}
-		// Case en bas du vide
-		if (coordTrou[1] < 3) {
-			tableau[coordTrou[0]][coordTrou[1] + 1].coteLibre = new boolean[] { false, false, false, true };
-		}
-	}
 
 	public void movePiece(char c) {
-		Piece temp=null;
+		Piece temp = null;
 		switch (c) {
 		case 'z':
 			if (coordTrou[1] < 3) {
 				temp = tableau[coordTrou[0]][coordTrou[1]]; // récupère la pièce "vide"
 				tableau[coordTrou[0]][coordTrou[1]] = tableau[coordTrou[0]][coordTrou[1] + 1]; // déplace la pièce
 				tableau[coordTrou[0]][coordTrou[1] + 1] = temp; // met le trou à la place de la pièce déplacée
-				coordTrou[1]+=1;
+				//Change les coordonnées de la pièce déplacée
+				tableau[coordTrou[0]][coordTrou[1]].setCoord(coordTrou);
+				coordTrou[1] += 1;
 			}
 			break;
 		case 'q':
@@ -90,19 +66,23 @@ public class Grille {
 				temp = tableau[coordTrou[0]][coordTrou[1]]; // récupère la pièce "vide"
 				tableau[coordTrou[0]][coordTrou[1]] = tableau[coordTrou[0] + 1][coordTrou[1]]; // déplace la pièce
 				tableau[coordTrou[0] + 1][coordTrou[1]] = temp; // met le trou à la place de la pièce déplacée
-				coordTrou[0]+=1;
+				
+				//Change les coordonnées de la pièce déplacée
+				tableau[coordTrou[0]][coordTrou[1]].setCoord(coordTrou);
+				
+				coordTrou[0] += 1;
 			}
 			break;
 		case 's':
 			if (coordTrou[1] > 0) {
 				temp = tableau[coordTrou[0]][coordTrou[1]]; // récupère la pièce "vide"
-<<<<<<< HEAD
 				tableau[coordTrou[0]][coordTrou[1]] = tableau[coordTrou[0]][coordTrou[1] - 1]; // déplace la pièce
-=======
-				tableau[coordTrou[0]][coordTrou[1]] = tableau[coordTrou[0]][coordTrou[1] - 1]; // déplace la pièceyy
->>>>>>> 26cf13eaf49fb56b5b50fd4b83c7ce5ab1eb90c8
 				tableau[coordTrou[0]][coordTrou[1] - 1] = temp; // met le trou à la place de la pièce déplacée
-				coordTrou[1]-=1;
+				
+				//Change les coordonnées de la pièce déplacée
+				tableau[coordTrou[0]][coordTrou[1]].setCoord(coordTrou);
+				
+				coordTrou[1] -= 1;
 			}
 			break;
 		case 'd':
@@ -110,7 +90,11 @@ public class Grille {
 				temp = tableau[coordTrou[0]][coordTrou[1]]; // récupère la pièce "vide"
 				tableau[coordTrou[0]][coordTrou[1]] = tableau[coordTrou[0] - 1][coordTrou[1]]; // déplace la pièce
 				tableau[coordTrou[0] - 1][coordTrou[1]] = temp; // met le trou à la place de la pièce déplacée
-				coordTrou[0]-=1;
+				
+				//Change les coordonnées de la pièce déplacée
+				tableau[coordTrou[0]][coordTrou[1]].setCoord(coordTrou);
+				
+				coordTrou[0] -= 1;
 			}
 			break;
 		}
@@ -118,30 +102,20 @@ public class Grille {
 
 	}
 
-<<<<<<< HEAD
-	public void test() {
-
-	}
-
-}
-=======
 	public boolean isWon() {
-		
+
 		boolean win = true;
-		
-		for(int i = 0 ; i < taille ; i++) {
-			for(int j = 0 ; j < taille ; j++) {
-					if ( !tableau[i][j].estEnPlace() ) {
-						win = false;
-						break;
-					}
-				}	
+
+		for (int i = 0; i < taille; i++) {
+			for (int j = 0; j < taille; j++) {
+				if (!tableau[i][j].estEnPlace()) {
+					win = false;
+					break;
+				}
 			}
-		
-		return win;
-		
 		}
+
+		return win;
+
 	}
-
-
->>>>>>> 26cf13eaf49fb56b5b50fd4b83c7ce5ab1eb90c8
+}

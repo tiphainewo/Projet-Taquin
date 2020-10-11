@@ -6,10 +6,10 @@
 <?import javafx.scene.layout.Pane?>
 
 
-<AnchorPane prefHeight="350.0" prefWidth="390.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="application.Controller">
+<AnchorPane prefHeight="350.0" prefWidth="390.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1">
    <children>
       <Pane layoutX="-99.0" layoutY="-163.0" prefHeight="200.0" prefWidth="200.0" />
       <Label fx:id="timerDisplay" layoutX="73.0" layoutY="118.0" prefHeight="65.0" prefWidth="132.0" text="Time" />
-      <Button fx:id="start" layoutX="87.0" layoutY="208.0" mnemonicParsing="false" onAction="#onStartClick" text="Start" />
+      <Button layoutX="87.0" layoutY="208.0" mnemonicParsing="false" text="Start" />
    </children>
 </AnchorPane>
