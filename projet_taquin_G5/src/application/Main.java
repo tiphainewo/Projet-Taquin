@@ -33,7 +33,7 @@ public class Main /*extends Application*/ {
 	        char c = sc.next().charAt(0); 
 	        grilleTest.movePiece(c);
 	        if (grilleTest.isWon()) {
-	        	System.out.println("it's win");
+	        	System.out.println("it's won");
 	        }
 		}
 	}
