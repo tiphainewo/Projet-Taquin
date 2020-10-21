@@ -38,6 +38,7 @@ public class Piece {
 		return false;
 	}
 	
+	@Override
 	public String toString() {
 		if(id==15) {
 			return ("__");

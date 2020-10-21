@@ -9,6 +9,7 @@ public class Timer extends Thread{
 		this.stop = false;
 	}
 	
+	@Override
 	public void run() {
 		while(!stop) {
 			time++;

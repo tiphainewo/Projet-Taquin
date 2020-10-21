@@ -23,6 +23,7 @@
                       <Menu mnemonicParsing="false" text="File">
                         <items>
                           <MenuItem mnemonicParsing="false" text="Close" />
+                              <MenuItem fx:id="newGame" mnemonicParsing="false" onAction="#launchTimer" text="New game" />
                         </items>
                       </Menu>
                       <Menu mnemonicParsing="false" text="Edit">
@@ -63,7 +64,7 @@
                         <Pane layoutX="33.0" layoutY="38.0" prefHeight="53.0" prefWidth="50.0" style="-fx-background-color: pink;">
                            <children>
                               <Label layoutX="4.0" layoutY="6.0" prefHeight="17.0" prefWidth="43.0" text="Chrono" textAlignment="CENTER" wrapText="true" />
-                              <Label fx:id="chrono" layoutX="11.0" layoutY="31.0" text="00:00" textAlignment="CENTER" />
+                              <Label fx:id="chrono" layoutX="11.0" layoutY="31.0" textAlignment="CENTER" />
                            </children>
                         </Pane>
                      </children></Pane>

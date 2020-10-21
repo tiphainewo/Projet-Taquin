@@ -1,8 +1,5 @@
 package application;
 
-import java.util.Arrays;
-import java.util.Random;
-
 public class Grille {
 
 	private int taille;
@@ -14,9 +11,8 @@ public class Grille {
 		this.taille = size;
 		this.tableau = new Piece[taille][taille];
 		image = "lien";
-		coordTrou = new int[] { 3, 3 };
 		initTableau();
-		
+		coordTrou = new int[] { 3, 3 };
 	}
 
 	public int getTaille() {
@@ -33,12 +29,6 @@ public class Grille {
 				tableau[j][i] = new Piece(numPiece, j, i);
 				numPiece++;
 			}
-		}
-		
-		Random rand = new Random();
-		
-		for (int i = 0; i < 50; i++) {
-			movePiece(rand.nextInt(4));
 		}
 	}
 
@@ -58,59 +48,6 @@ public class Grille {
 	}
 
 
-	public void movePiece(int i) {
-		Piece temp = null;
-		switch (i) {
-		case 0:
-			if (coordTrou[1] < 3) {
-				temp = tableau[coordTrou[0]][coordTrou[1]]; // récupère la pièce "vide"
-				tableau[coordTrou[0]][coordTrou[1]] = tableau[coordTrou[0]][coordTrou[1] + 1]; // déplace la pièce
-				tableau[coordTrou[0]][coordTrou[1] + 1] = temp; // met le trou à la place de la pièce déplacée
-				//Change les coordonnées de la pièce déplacée
-				tableau[coordTrou[0]][coordTrou[1]].setCoord(coordTrou);
-				coordTrou[1] += 1;
-			}
-			break;
-		case 1:
-			if (coordTrou[0] < 3) {
-				temp = tableau[coordTrou[0]][coordTrou[1]]; // récupère la pièce "vide"
-				tableau[coordTrou[0]][coordTrou[1]] = tableau[coordTrou[0] + 1][coordTrou[1]]; // déplace la pièce
-				tableau[coordTrou[0] + 1][coordTrou[1]] = temp; // met le trou à la place de la pièce déplacée
-				
-				//Change les coordonnées de la pièce déplacée
-				tableau[coordTrou[0]][coordTrou[1]].setCoord(coordTrou);
-				
-				coordTrou[0] += 1;
-			}
-			break;
-		case 2:
-			if (coordTrou[1] > 0) {
-				temp = tableau[coordTrou[0]][coordTrou[1]]; // récupère la pièce "vide"
-				tableau[coordTrou[0]][coordTrou[1]] = tableau[coordTrou[0]][coordTrou[1] - 1]; // déplace la pièce
-				tableau[coordTrou[0]][coordTrou[1] - 1] = temp; // met le trou à la place de la pièce déplacée
-				
-				//Change les coordonnées de la pièce déplacée
-				tableau[coordTrou[0]][coordTrou[1]].setCoord(coordTrou);
-				
-				coordTrou[1] -= 1;
-			}
-			break;
-		case 3:
-			if (coordTrou[0] > 0) {
-				temp = tableau[coordTrou[0]][coordTrou[1]]; // récupère la pièce "vide"
-				tableau[coordTrou[0]][coordTrou[1]] = tableau[coordTrou[0] - 1][coordTrou[1]]; // déplace la pièce
-				tableau[coordTrou[0] - 1][coordTrou[1]] = temp; // met le trou à la place de la pièce déplacée
-				
-				//Change les coordonnées de la pièce déplacée
-				tableau[coordTrou[0]][coordTrou[1]].setCoord(coordTrou);
-				
-				coordTrou[0] -= 1;
-			}
-			break;
-		}
-	}
-
-	
 	public void movePiece(char c) {
 		Piece temp = null;
 		switch (c) {
@@ -162,9 +99,9 @@ public class Grille {
 			break;
 		}
 		afficherGrille();
+
 	}
-	
-	
+
 	public boolean isWon() {
 
 		boolean win = true;

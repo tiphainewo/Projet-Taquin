@@ -3,20 +3,23 @@ package application;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuBar;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.util.Duration;
 
 public class TestFXMLController implements Initializable {
 	
 	/*
-     * Variables globales correspondant à des objets définis dans la vue (fichier .fxml)
-     * Ces variables sont ajoutées à la main et portent le même nom que les fx:id dans Scene Builder
+     * Variables globales correspondant ï¿½ des objets dï¿½finis dans la vue (fichier .fxml)
+     * Ces variables sont ajoutï¿½es ï¿½ la main et portent le mï¿½me nom que les fx:id dans Scene Builder
      */
 	
 	@FXML
@@ -24,10 +27,11 @@ public class TestFXMLController implements Initializable {
     @FXML
     private GridPane grille; // Grille contenant le taquin 
     @FXML
-    private Pane fond; // panneau recouvrant toute la fenêtre
+    private Pane fond; // panneau recouvrant toute la fenï¿½tre
     @FXML
     private MenuBar menu; // Menu
-	
+    @FXML
+    private MenuItem newGame;
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
@@ -35,29 +39,53 @@ public class TestFXMLController implements Initializable {
 	}
 	
 	/*
-     * Méthodes appelées lors d'événements dans l'application (fichier .fxml)
-     * Ces méthodes sont ajoutées à la main et portent le même nom que les fx:id dans Scene Builder
+     * Mï¿½thodes appelï¿½es lors d'ï¿½vï¿½nements dans l'application (fichier .fxml)
+     * Ces mï¿½thodes sont ajoutï¿½es ï¿½ la main et portent le mï¿½me nom que les fx:id dans Scene Builder
      */
 	
 	@FXML
 	public void gridKeyPressed (KeyEvent ke) {
-		System.out.println("Touche "+ke.getText()+" appuyée via grille.");
+		System.out.println("Touche "+ke.getText()+" appuyï¿½e via grille.");
 	}
 	
 	@FXML
 	public void fondKeyPressed (KeyEvent ke) {
-		System.out.println("Touche "+ke.getText()+" appuyée via fond.");
+		System.out.println("Touche "+ke.getText()+" appuyï¿½e via fond.");
 	}
 	
 	@FXML
 	public void anchKeyPressed (KeyEvent ke) {
-		System.out.println("Touche "+ke.getText()+" appuyée via ancre.");
+		System.out.println("Touche "+ke.getText()+" appuyï¿½e via ancre.");
 	}
 	
 	@FXML
 	public void gridMouseClicked (MouseEvent me) {
 		System.out.println("Click "+me.getButton());
 		
+	}
+	@FXML
+    void launchTimer(ActionEvent event) {
+    	Timer timer = new Timer(60);
+    }
+    
+    class Timer extends Pane{
+		private Timeline animation;
+		public int temps;
+		private String s = "";
+		private Timer(int t) {
+			temps = t;
+			animation = new Timeline(new KeyFrame(Duration.seconds(1), e -> timepass()));
+			animation.setCycleCount(Timeline.INDEFINITE);
+			animation.play();
+		}
+		
+		private void timepass() {
+			if(temps>0) {
+				temps--;
+			}
+			s = temps+"";
+			chrono.setText(s);
+		}
 	}
 
 }
