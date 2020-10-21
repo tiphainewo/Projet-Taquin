@@ -65,9 +65,13 @@ public class TestFXMLController implements Initializable {
 	}
 	@FXML
     void launchTimer(ActionEvent event) {
-    	Timer timer = new Timer(60);
+    	Timer timer = new Timer(6);
     }
     
+	@FXML
+    void afficherFin() {
+    	System.out.println("fin");
+    }
     class Timer extends Pane{
 		private Timeline animation;
 		public int temps;
@@ -82,6 +86,10 @@ public class TestFXMLController implements Initializable {
 		private void timepass() {
 			if(temps>0) {
 				temps--;
+			}
+			else {
+				afficherFin();
+				animation.stop();
 			}
 			s = temps+"";
 			chrono.setText(s);
