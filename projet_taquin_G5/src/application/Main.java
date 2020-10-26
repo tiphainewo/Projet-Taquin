@@ -1,11 +1,13 @@
 package application;
 	
-import javafx.application.Application;
 import java.util.Scanner; 
+/*
+import javafx.application.Application;
+
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
-
+*/
 
 public class Main /*extends Application*/ {
 	/*
@@ -26,6 +28,10 @@ public class Main /*extends Application*/ {
 	
 	public static void main(String[] args) {
 		//launch(args);
+		jeuTexte();
+	}
+	public static void jeuTexte() {
+		System.out.println("Bienvenue dans la version texte du Taquin. Remettez les pièces dans l'ordre pour gagner.\n");
 		Grille grilleTest = new Grille(4);
 		grilleTest.afficherGrille();
 		Scanner sc = new Scanner(System.in); 
@@ -33,7 +39,7 @@ public class Main /*extends Application*/ {
 	        char c = sc.next().charAt(0); 
 	        grilleTest.movePiece(c);
 	        if (grilleTest.isWon()) {
-	        	System.out.println("it's won");
+	        	System.out.println("Vous avez gagné!");
 	        }
 		}
 	}

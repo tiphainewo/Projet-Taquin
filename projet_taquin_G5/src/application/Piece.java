@@ -13,7 +13,7 @@ public class Piece {
 		this.coord[1] =y;
 		this.coordFinal[0] = x;
 		this.coordFinal[1] = y;
-		if (num == 15) {
+		if (num == 16) {
 			vide = true;
 		} else {
 			vide = false;
@@ -39,7 +39,7 @@ public class Piece {
 	}
 	
 	public String toString() {
-		if(id==15) {
+		if(id==16) {
 			return ("__");
 		}
 		if(id<10) {

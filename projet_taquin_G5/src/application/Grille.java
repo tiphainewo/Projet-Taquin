@@ -9,6 +9,7 @@ public class Grille {
 	Piece[][] tableau;
 	String image;
 	int[] coordTrou;
+	private int coupsJoues;
 
 	public Grille(int size) {
 		this.taille = size;
@@ -16,18 +17,28 @@ public class Grille {
 		image = "lien";
 		coordTrou = new int[] { 3, 3 };
 		initTableau();
-		
+		this.coupsJoues = 0;
 	}
 
 	public int getTaille() {
 		return (this.taille);
+	}
+	
+	/*
+	 * getter et setter pour coupsJoues
+	 */
+	public int getCoupsJoues() {
+		return (this.coupsJoues);
+	}
+	public void setCoupsJoues(int coups) {
+		this.coupsJoues = coups;
 	}
 
 	/*
 	 * initialise la grille en créant toutes les pièces du tableau
 	 */
 	public void initTableau() {
-		int numPiece = 0;
+		int numPiece = 1;
 		for (int i = 0; i < this.taille; i++) {
 			for (int j = 0; j < this.taille; j++) {
 				tableau[j][i] = new Piece(numPiece, j, i);
@@ -59,6 +70,7 @@ public class Grille {
 
 
 	public void movePiece(int i) {
+		
 		Piece temp = null;
 		switch (i) {
 		case 0:
@@ -108,10 +120,12 @@ public class Grille {
 			}
 			break;
 		}
+		
 	}
 
 	
 	public void movePiece(char c) {
+		coupsJoues++;
 		Piece temp = null;
 		switch (c) {
 		case 'z':
@@ -161,7 +175,9 @@ public class Grille {
 			}
 			break;
 		}
+		System.out.println("\nCoups joués : "+coupsJoues);
 		afficherGrille();
+		
 	}
 	
 	
