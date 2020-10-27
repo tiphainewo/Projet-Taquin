@@ -26,9 +26,10 @@
                               <MenuItem fx:id="newGame" mnemonicParsing="false" onAction="#launchTimer" text="New game" />
                         </items>
                       </Menu>
-                      <Menu mnemonicParsing="false" text="Edit">
+                      <Menu mnemonicParsing="false" text="Themes">
                         <items>
-                          <MenuItem mnemonicParsing="false" text="Delete" />
+                          <MenuItem fx:id="darktheme" mnemonicParsing="false" onAction="#putDarkTheme" text="Thème sombre" />
+                              <MenuItem fx:id="lightTheme" mnemonicParsing="false" onAction="#putLightTheme" text="Thème clair" />
                         </items>
                       </Menu>
                       <Menu mnemonicParsing="false" text="Help">

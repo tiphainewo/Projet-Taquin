@@ -1,0 +1,11 @@
+*{
+	-fx-text-fill: white; 
+}
+Label, Pane{
+	-fx-background-color: lightslategrey; 
+}
+
+MenuBar{
+	-fx-background-color: slategrey; 
+	-fx-border-color: slategrey slategrey black slategrey;
+}
