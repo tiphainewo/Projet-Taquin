@@ -36,6 +36,11 @@ public class TestFXMLController implements Initializable {
     private MenuItem darktheme;
     @FXML
     private MenuItem lightTheme;
+    @FXML
+    private MenuItem sepiaTheme;
+    @FXML
+    private Pane chronoPane;
+    
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
@@ -101,12 +106,20 @@ public class TestFXMLController implements Initializable {
 	}
     @FXML
     void putDarkTheme(ActionEvent event) {
+    	Main.scene.getStylesheets().clear();
     	Main.scene.getStylesheets().add("application/darkTheme.css");
     }
     
     @FXML
     void putLightTheme(ActionEvent event) {
+    	Main.scene.getStylesheets().clear();
     	Main.scene.getStylesheets().add("application/application.css");
+    }
+    
+    @FXML
+    void putSepiaTheme(ActionEvent event) {
+    	Main.scene.getStylesheets().clear();
+    	Main.scene.getStylesheets().add("application/sepiaTheme.css");
     }
 
 }

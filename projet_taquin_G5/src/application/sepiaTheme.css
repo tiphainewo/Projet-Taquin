@@ -1,0 +1,22 @@
+*{
+	-fx-text-fill: #533d16; 
+}
+Label, Pane{
+	-fx-background-color: oldlace; 
+}
+
+#chronoPane{
+	-fx-background-color: oldlace;
+}
+
+.context-menu{
+	-fx-background-color: #f9e3bb; 
+}
+.menu-item:focused, .menu:hover, .menu:showing{
+	-fx-background-color: #e0a58b; 
+}
+
+MenuBar{
+	-fx-background-color: linear-gradient(#fff9ee, #ccb384),
+                     	linear-gradient(#f9e3bb 0%, #e7cfa3 50%);
+}

@@ -5,7 +5,18 @@ Label, Pane{
 	-fx-background-color: lightslategrey; 
 }
 
+#chronoPane{
+	-fx-background-color: lightslategrey;
+}
+
+.context-menu{
+	-fx-background-color: lightslategrey; 
+}
+.menu-item:focused, .menu:hover, .menu:showing{
+	-fx-background-color: #de7f54; 
+}
+
 MenuBar{
-	-fx-background-color: slategrey; 
-	-fx-border-color: slategrey slategrey black slategrey;
+	-fx-background-color: linear-gradient(#8ca1b5, #56616b),
+                     	linear-gradient(lightslategrey 0%, slategrey 50%);
 }
