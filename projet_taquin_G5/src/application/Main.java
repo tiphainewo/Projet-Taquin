@@ -1,5 +1,7 @@
 package application;
 	
+import java.util.Scanner;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
@@ -23,5 +25,15 @@ public class Main extends Application {
 	
 	public static void main(String[] args) {
 		launch(args);
+		Grille grilleTest = new Grille(4);
+		grilleTest.afficherGrille();
+		Scanner sc = new Scanner(System.in); 
+		while(true) {
+	        char c = sc.next().charAt(0); 
+	        grilleTest.movePiece(c);
+	        if (grilleTest.isWon()) {
+	        	System.out.println("it's won");
+	        }
+		}
 	}
 }

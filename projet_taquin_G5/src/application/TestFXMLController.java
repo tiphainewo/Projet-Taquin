@@ -27,13 +27,14 @@ public class TestFXMLController implements Initializable {
     private Pane fond; // panneau recouvrant toute la fenêtre
     @FXML
     private MenuBar menu; // Menu
-	
+    @FXML
+    private Grille grid ;
+    
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-
+		grid = new Grille(4, grille);
 	}
-	
 	/*
      * Méthodes appelées lors d'événements dans l'application (fichier .fxml)
      * Ces méthodes sont ajoutées à la main et portent le même nom que les fx:id dans Scene Builder
@@ -59,5 +60,10 @@ public class TestFXMLController implements Initializable {
 		System.out.println("Click "+me.getButton());
 		
 	}
+	
+	@FXML
+	public Grille get_grid() {
+		return grid;
 
+	}
 }

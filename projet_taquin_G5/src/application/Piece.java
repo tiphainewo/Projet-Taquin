@@ -1,6 +1,9 @@
 package application;
 
-public class Piece {
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
+public class Piece extends ImageView {
 
 	int[] coord = new int[2];
 	final int[] coordFinal = new int[2];
@@ -18,7 +21,23 @@ public class Piece {
 		} else {
 			vide = false;
 		}
-		
+	}
+	
+	public Piece(int num, int x, int y, int sizeImageView) {
+		this.id = num;
+		this.coord[0] =x;
+		this.coord[1] =y;
+		this.coordFinal[0] = x;
+		this.coordFinal[1] = y;
+		if (num == 15) {
+			vide = true;
+		} else {
+			vide = false;
+		}
+		//JavaFX
+		this.setFitHeight(sizeImageView); 
+		this.setFitWidth(sizeImageView);
+		this.setImage(new Image("File:imgTest.jpg"));;
 	}
 	
 	public void setCoord(int[] tabCoord) {
@@ -38,6 +57,7 @@ public class Piece {
 		return false;
 	}
 	
+	@Override
 	public String toString() {
 		if(id==15) {
 			return ("__");

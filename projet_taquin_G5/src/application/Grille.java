@@ -1,22 +1,41 @@
 package application;
 
-import java.util.Arrays;
 import java.util.Random;
+import javafx.scene.layout.GridPane;
+import javafx.scene.control.Label;
 
-public class Grille {
+public class Grille extends GridPane {
 
 	private int taille;
 	Piece[][] tableau;
 	String image;
 	int[] coordTrou;
+	
+	GridPane grid;
 
 	public Grille(int size) {
+		//pour jeuTexte
 		this.taille = size;
 		this.tableau = new Piece[taille][taille];
 		image = "lien";
 		coordTrou = new int[] { 3, 3 };
-		initTableau();
+		//pour java FX
+		grid = new GridPane();
 		
+		initTableau();
+	}
+	
+	public Grille(int size, GridPane gridSB) {
+		//pour jeuTexte
+		this.taille = size;
+		this.tableau = new Piece[taille][taille];
+		image = "lien";
+		coordTrou = new int[] { 3, 3 };
+
+		//pour java FX
+		grid = gridSB;
+		
+		initTableau();
 	}
 
 	public int getTaille() {
@@ -31,12 +50,14 @@ public class Grille {
 		for (int i = 0; i < this.taille; i++) {
 			for (int j = 0; j < this.taille; j++) {
 				tableau[j][i] = new Piece(numPiece, j, i);
+				grid.add(new Piece(numPiece, j, i, 97), j, i);//numerote les piece de la gridpane
 				numPiece++;
 			}
 		}
 		
-		Random rand = new Random();
 		
+		//randomise la grille
+		Random rand = new Random();
 		for (int i = 0; i < 50; i++) {
 			movePiece(rand.nextInt(4));
 		}
