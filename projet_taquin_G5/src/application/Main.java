@@ -3,6 +3,7 @@ package application;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
+import application.CutImage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
@@ -23,6 +24,8 @@ public class Main extends Application {
 	}
 	
 	public static void main(String[] args) {
-		launch(args);
+		CutImage cutImage = new CutImage();
+		cutImage.decoupeImage(4,"images/image.jpg");
+		//launch(args);	
 	}
 }
