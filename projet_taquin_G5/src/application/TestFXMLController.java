@@ -5,12 +5,15 @@ import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+
 
 public class TestFXMLController implements Initializable {
 	
@@ -28,12 +31,16 @@ public class TestFXMLController implements Initializable {
     @FXML
     private MenuBar menu; // Menu
     @FXML
-    private Grille grid ;
+    private Grid grid ;
+    @FXML
+    private BorderPane borderPane;
+    
     
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		grid = new Grille(4, grille);
+		grid = new Grid(4);
+		borderPane.setCenter(grid);
 	}
 	/*
      * Méthodes appelées lors d'événements dans l'application (fichier .fxml)
@@ -58,12 +65,11 @@ public class TestFXMLController implements Initializable {
 	@FXML
 	public void gridMouseClicked (MouseEvent me) {
 		System.out.println("Click "+me.getButton());
-		
 	}
 	
 	@FXML
-	public Grille get_grid() {
+	public Grid get_grid() {
 		return grid;
-
+		
 	}
 }
