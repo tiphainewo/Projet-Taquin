@@ -1,1 +1,7 @@
 /* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+
+.case {
+    -fx-text-fill: #6666FF;
+    -fx-font-size: 42;
+    -fx-padding: 26 40 26 40;
+}

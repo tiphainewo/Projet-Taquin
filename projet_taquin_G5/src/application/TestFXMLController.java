@@ -5,10 +5,8 @@ import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -25,21 +23,29 @@ public class TestFXMLController implements Initializable {
 	@FXML
     private Label chrono; // value will be injected by the FXMLLoader
     @FXML
-    private GridPane grille; // Grille contenant le taquin 
+    private GridPane grille_init; // Grille initiale 
     @FXML
     private Pane fond; // panneau recouvrant toute la fenêtre
     @FXML
     private MenuBar menu; // Menu
     @FXML
-    private Grid grid ;
-    @FXML
     private BorderPane borderPane;
     
+    
+    private Grille taquin;
+    private Grid grid;
     
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		grid = new Grid(4);
+		
+		taquin = new Grille(4);
+		taquin.afficherGrille();
+		System.out.println("CoordTrou"+taquin.getCoordTrou()[0]+" "+taquin.getCoordTrou()[1]);
+		grid = new Grid(taquin);
+		grid.setGridLinesVisible(true);
+		grid.setOnMouseClicked(grille_init.getOnMouseClicked());
+		grille_init = null; // Hello garbage collector
 		borderPane.setCenter(grid);
 	}
 	/*
@@ -48,28 +54,23 @@ public class TestFXMLController implements Initializable {
      */
 	
 	@FXML
-	public void gridKeyPressed (KeyEvent ke) {
-		System.out.println("Touche "+ke.getText()+" appuyée via grille.");
-	}
-	
-	@FXML
-	public void fondKeyPressed (KeyEvent ke) {
-		System.out.println("Touche "+ke.getText()+" appuyée via fond.");
-	}
-	
-	@FXML
-	public void anchKeyPressed (KeyEvent ke) {
-		System.out.println("Touche "+ke.getText()+" appuyée via ancre.");
-	}
-	
-	@FXML
 	public void gridMouseClicked (MouseEvent me) {
-		System.out.println("Click "+me.getButton());
+		int casex = (int) (me.getX()*grid.getColumnCount()/grid.getWidth());
+		int casey = (int) (me.getY()*grid.getRowCount()/grid.getHeight());
+		int caseVideCol = taquin.getCoordTrou()[0];
+		int caseVideRow = taquin.getCoordTrou()[1];
+		if((caseVideCol == casex && (caseVideRow == casey-1 || caseVideRow == casey+1)) 
+				||(caseVideRow == casey && (caseVideCol == casex-1 || caseVideCol == casex+1))) {
+			// On teste si la case vide et adjacente à la case cliquée
+			grid.swapChildren(casex, casey, caseVideCol,caseVideRow);
+			taquin.echangerPieces(casey, casex, caseVideRow, caseVideCol);
+		}
+		taquin.afficherGrille();
+		System.out.print("caseX : "+casex+" casey : "+casey+"   ");
+		System.out.println("CoordTrou : "+taquin.getCoordTrou()[1]+" "+taquin.getCoordTrou()[0]);
 	}
 	
-	@FXML
 	public Grid get_grid() {
 		return grid;
-		
 	}
 }
