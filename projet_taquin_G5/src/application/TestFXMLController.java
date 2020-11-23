@@ -40,8 +40,9 @@ public class TestFXMLController implements Initializable {
 		// TODO Auto-generated method stub
 		
 		taquin = new Grille(4);
-		taquin.afficherGrille();
-		System.out.println("CoordTrou"+taquin.getCoordTrou()[0]+" "+taquin.getCoordTrou()[1]);
+		
+		taquin.afficherGrille(); //debug
+		
 		grid = new Grid(taquin);
 		grid.setGridLinesVisible(true);
 		grid.setOnMouseClicked(grille_init.getOnMouseClicked());
@@ -65,9 +66,7 @@ public class TestFXMLController implements Initializable {
 			grid.swapChildren(casex, casey, caseVideCol,caseVideRow);
 			taquin.echangerPieces(casey, casex, caseVideRow, caseVideCol);
 		}
-		taquin.afficherGrille();
-		System.out.print("caseX : "+casex+" casey : "+casey+"   ");
-		System.out.println("CoordTrou : "+taquin.getCoordTrou()[1]+" "+taquin.getCoordTrou()[0]);
+		taquin.afficherGrille(); //debug
 	}
 	
 	public Grid get_grid() {
