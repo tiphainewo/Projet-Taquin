@@ -17,7 +17,7 @@ public class Case extends Pane {
 		GridPane.setColumnIndex(this, x);
 		GridPane.setRowIndex(this, y);
 		
-		//Ajout du Label le chiffre à afficher
+		//Ajout du Label le chiffre ï¿½ afficher
 		this.num = new Label(Integer.toString(number));
 		num.getStyleClass().add("case");
 		
@@ -34,7 +34,7 @@ public class Case extends Pane {
 	}
 	
 	public void setImage(int size, String imgPath) {
-		/** Méthode pas encore testée
+		/** Mï¿½thode pas encore testï¿½e
 		 * 
 		 */
 		ImageView newImg = new ImageView();

@@ -14,9 +14,11 @@ public class Grid extends GridPane  {
 		
 		for (int i = 0; i < this.taille; i++) {
 			for (int j = 0; j < this.taille; j++) {
+				String imageName="image"+numPiece+".jpg";
+				imageName="images/image1.jpg";
 				this.getChildren().add(
 						new Case(numPiece, j, i,
-						97, "File:imgTest.jpg",
+						97, imageName,
 						!(i == this.taille-1 && j == this.taille -1)
 						));
 				numPiece++;
@@ -31,10 +33,11 @@ public class Grid extends GridPane  {
 		int caseVideRow = g.getCoordTrou()[1];
 		for (int i = 0; i < this.taille; i++) {
 			for (int j = 0; j < this.taille; j++) {
+				String imageName="File:images/image"+i+j+".jpg";
 				this.getChildren().add(
 						new Case(
 						g.getPiece(j,i).getId(), i, j,
-						97, "File:imgTest.jpg",
+						97, imageName,
 						!(i == caseVideCol && j == caseVideRow)
 						)
 				);
@@ -58,14 +61,14 @@ public class Grid extends GridPane  {
 	}
 	
 	public ArrayList<Node> getChildrenAt(int col, int row) {
-		// Renvoie la liste (éventuellement vide) des enfants de la grid
-		// qui se trouvent dans la case à la colonne col et la ligne row.
+		// Renvoie la liste (ï¿½ventuellement vide) des enfants de la grid
+		// qui se trouvent dans la case ï¿½ la colonne col et la ligne row.
 		ArrayList<Node> list =  new ArrayList<>();
 		for(Node node : this.getChildren()) {
 			try {
 				// this.getChildren() est une ObservableList<Node> de la forme [Groupe, Child, Child, Child.... Child]
-				// Le try-catch permet de contourner l'exception renvoyée par les fonctions
-				// GridPane.getRowIndex et GridPane.getColumnIndex lorsqu'elles sont utilisées sur le premier élément
+				// Le try-catch permet de contourner l'exception renvoyï¿½e par les fonctions
+				// GridPane.getRowIndex et GridPane.getColumnIndex lorsqu'elles sont utilisï¿½es sur le premier ï¿½lï¿½ment
 				// de la liste.
 				if(GridPane.getRowIndex(node) == row && GridPane.getColumnIndex(node) == col) list.add(node);
 			}
