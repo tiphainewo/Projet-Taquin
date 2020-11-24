@@ -12,7 +12,7 @@ public class Grille {
 		this.taille = size;
 		this.tableau = new Piece[size][size];
 		this.coordTrou = new int[] {size-1,size-1};
-		image = "lien";
+		//image = "lien";
 		this.initTableau();
 	}
 
@@ -181,7 +181,7 @@ public class Grille {
 
 	}
 
-	}
+	
 	
 	public void echangerPieces (int x, int y, int xfinal, int yfinal) {
 		/** Echange la pi�ce situ�e aux coordon�es x,y

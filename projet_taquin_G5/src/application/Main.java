@@ -26,6 +26,6 @@ public class Main extends Application {
 	public static void main(String[] args) {
 		CutImage cutImage = new CutImage();
 		cutImage.decoupeImage(4,"images/image.jpg");
-		//launch(args);	
+		launch(args);	
 	}
 }

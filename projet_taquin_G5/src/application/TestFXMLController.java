@@ -44,6 +44,7 @@ public class TestFXMLController implements Initializable {
     private MenuItem sepiaTheme;
     @FXML
     private Pane chronoPane;
+    @FXML
     private BorderPane borderPane;
     
     
