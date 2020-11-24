@@ -9,7 +9,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
 import javafx.scene.input.MouseEvent;
@@ -59,7 +58,7 @@ public class TestFXMLController implements Initializable {
 		
 		taquin.afficherGrille(); //debug
 		
-		grid = new Grid(taquin);
+		grid = new Grid(taquin, "File:images/image");
 		grid.setGridLinesVisible(true);
 		grid.setOnMouseClicked(grille_init.getOnMouseClicked());
 		grille_init = null; // Hello garbage collector
@@ -69,21 +68,6 @@ public class TestFXMLController implements Initializable {
      * M�thodes appel�es lors d'�v�nements dans l'application (fichier .fxml)
      * Ces m�thodes sont ajout�es � la main et portent le m�me nom que les fx:id dans Scene Builder
      */
-	
-	@FXML
-	public void gridKeyPressed (KeyEvent ke) {
-		System.out.println("Touche "+ke.getText()+" appuy�e via grille.");
-	}
-	
-	@FXML
-	public void fondKeyPressed (KeyEvent ke) {
-		System.out.println("Touche "+ke.getText()+" appuy�e via fond.");
-	}
-	
-	@FXML
-	public void anchKeyPressed (KeyEvent ke) {
-		System.out.println("Touche "+ke.getText()+" appuy�e via ancre.");
-	}
 	
 	@FXML
     void launchTimer(ActionEvent event) {
@@ -144,12 +128,8 @@ public class TestFXMLController implements Initializable {
 				||(caseVideRow == casey && (caseVideCol == casex-1 || caseVideCol == casex+1))) {
 			// On teste si la case vide et adjacente � la case cliqu�e
 			grid.swapChildren(casex, casey, caseVideCol,caseVideRow);
-			taquin.echangerPieces(casey, casex, caseVideRow, caseVideCol);
+			taquin.echangerPieces(casex, casey, caseVideCol, caseVideRow);
 		}
 		taquin.afficherGrille(); //debug
-	}
-	
-	public Grid get_grid() {
-		return grid;
 	}
 }

@@ -3,7 +3,7 @@ package application;
 public class Piece {
 
 	private int[] coord = new int[2];
-	final int[] coordFinal = new int[2];
+	private final int[] coordFinal = new int[2];
 	private boolean vide;
 	private int id;
 	
@@ -23,6 +23,10 @@ public class Piece {
 	
 	public int[] getCoord() {
 		return this.coord;
+	}
+	
+	public int[] getCoordFinal() {
+		return this.coordFinal;
 	}
 	
 	public int getId() {

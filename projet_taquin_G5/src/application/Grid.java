@@ -26,17 +26,19 @@ public class Grid extends GridPane  {
 		}
 	}
 	
-	public Grid(Grille g) {
-		// It's debug time
+	public Grid(Grille g, String imgPath) {
 		this.taille = g.getTaille();
 		int caseVideCol = g.getCoordTrou()[0];
 		int caseVideRow = g.getCoordTrou()[1];
 		for (int i = 0; i < this.taille; i++) {
 			for (int j = 0; j < this.taille; j++) {
-				String imageName="File:images/image"+i+j+".jpg";
+				Piece piece = g.getPiece(j, i);
+				int coordFinalX = piece.getCoordFinal()[1];
+				int coordFinalY = piece.getCoordFinal()[0];
+				String imageName=imgPath+coordFinalX+coordFinalY+".jpg";
 				this.getChildren().add(
 						new Case(
-						g.getPiece(j,i).getId(), i, j,
+						piece.getId(), j, i,
 						97, imageName,
 						!(i == caseVideCol && j == caseVideRow)
 						)

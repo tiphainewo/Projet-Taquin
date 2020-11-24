@@ -45,7 +45,7 @@ public class Grille {
 		//randomise la grille
 		Random rand = new Random();
 		//char[] dirList = new char[] {'z','q','s','d'};
-		for (int i = 0; i < 500; i++) {
+		for (int i = 0; i < 1500; i++) {
 			//this.movePiece(dirList[rand.nextInt(4)]);
 			this.movePiece(rand.nextInt(4));
 		}
@@ -187,11 +187,11 @@ public class Grille {
 		/** Echange la pi�ce situ�e aux coordon�es x,y
 		 * avec celle aux coordonn�es xfinal, yfinal.
 		 */
-		Piece temp = this.tableau[y][x];
-		this.tableau[y][x] = this.tableau[yfinal][xfinal];
-		this.tableau[yfinal][xfinal] = temp;
-		if (this.coordTrou[1] == x && this.coordTrou[0] == y) this.coordTrou = new int[] {yfinal,xfinal};
-		if (this.coordTrou[1] == xfinal && this.coordTrou[0] == yfinal) this.coordTrou = new int[] {y,x};
+		Piece temp = this.tableau[x][y];
+		this.tableau[x][y] = this.tableau[xfinal][yfinal];
+		this.tableau[xfinal][yfinal] = temp;
+		if (this.coordTrou[1] == y && this.coordTrou[0] == x) this.coordTrou = new int[] {xfinal,yfinal};
+		if (this.coordTrou[1] == yfinal && this.coordTrou[0] == xfinal) this.coordTrou = new int[] {x,y};
 		
 	}
 	
