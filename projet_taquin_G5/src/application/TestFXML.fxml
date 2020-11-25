@@ -22,20 +22,20 @@
                     <menus>
                       <Menu mnemonicParsing="false" text="File">
                         <items>
+                              <MenuItem fx:id="newGame" mnemonicParsing="false" onAction="#setNewGame" text="New game" />
                           <MenuItem mnemonicParsing="false" text="Close" />
-                              <MenuItem fx:id="newGame" mnemonicParsing="false" onAction="#newGame" text="New game" />
+                        </items>
+                      </Menu>
+                      <Menu mnemonicParsing="false" text="View">
+                        <items>
+                          <MenuItem fx:id="buttonChiffres" mnemonicParsing="false" onAction="#toggleChiffres" text="Afficher les chiffres" />
                         </items>
                       </Menu>
                       <Menu mnemonicParsing="false" text="Themes">
                         <items>
-                          <MenuItem fx:id="darktheme" mnemonicParsing="false" onAction="#putDarkTheme" onMenuValidation="#putDarkTheme" text="Thème sombre" />
                               <MenuItem fx:id="lightTheme" mnemonicParsing="false" onAction="#putLightTheme" onMenuValidation="#putLightTheme" text="Thème clair" />
+                          <MenuItem fx:id="darktheme" mnemonicParsing="false" onAction="#putDarkTheme" onMenuValidation="#putDarkTheme" text="Thème sombre" />
                               <MenuItem fx:id="sepiaTheme" mnemonicParsing="false" onAction="#putSepiaTheme" onMenuValidation="#putSepiaTheme" text="Thème sepia" />
-                        </items>
-                      </Menu>
-                      <Menu mnemonicParsing="false" text="Help">
-                        <items>
-                          <MenuItem mnemonicParsing="false" text="About" />
                         </items>
                       </Menu>
                     </menus>
@@ -65,8 +65,14 @@
                      <children>
                         <Pane id="chronoPane" fx:id="chronoPane" layoutX="33.0" layoutY="38.0" prefHeight="53.0" prefWidth="50.0">
                            <children>
-                              <Label layoutX="4.0" layoutY="6.0" prefHeight="17.0" prefWidth="43.0" text="Chrono" textAlignment="CENTER" wrapText="true" />
+                              <Label alignment="CENTER" layoutX="4.0" layoutY="6.0" prefHeight="17.0" prefWidth="43.0" text="Chrono" textAlignment="CENTER" wrapText="true" />
                               <Label fx:id="chrono" layoutX="11.0" layoutY="31.0" textAlignment="CENTER" />
+                           </children>
+                        </Pane>
+                        <Pane id="chronoPane" fx:id="scorePane" layoutX="35.0" layoutY="171.0" prefHeight="53.0" prefWidth="50.0">
+                           <children>
+                              <Label alignment="CENTER" layoutX="4.0" layoutY="6.0" prefHeight="17.0" prefWidth="43.0" text="Score" wrapText="true" />
+                              <Label fx:id="score" layoutX="11.0" layoutY="31.0" textAlignment="CENTER" />
                            </children>
                         </Pane>
                      </children></Pane>

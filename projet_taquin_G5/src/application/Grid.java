@@ -15,7 +15,7 @@ public class Grid extends GridPane  {
 		for (int i = 0; i < this.taille; i++) {
 			for (int j = 0; j < this.taille; j++) {
 				String imageName="image"+numPiece+".jpg";
-				imageName="images/image1.jpg";
+				imageName="File:imgTest.jpg";
 				this.getChildren().add(
 						new Case(numPiece, j, i,
 						97, imageName,

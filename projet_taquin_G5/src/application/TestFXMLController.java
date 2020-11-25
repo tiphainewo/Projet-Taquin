@@ -25,16 +25,19 @@ public class TestFXMLController implements Initializable {
      * Ces variables sont ajoutï¿½es ï¿½ la main et portent le mï¿½me nom que les fx:id dans Scene Builder
      */
 	
+	// value will be injected by the FXMLLoader
 	@FXML
-    private Label chrono; // value will be injected by the FXMLLoader
+    private Pane fond; // panneau recouvrant toute la fenï¿½tre
     @FXML
     private GridPane grille_init; // Grille initiale 
     @FXML
-    private Pane fond; // panneau recouvrant toute la fenï¿½tre
+    private BorderPane borderPane;
     @FXML
     private MenuBar menu; // Menu
     @FXML
     private MenuItem newGame;
+    @FXML
+    private MenuItem buttonChiffres;
     @FXML
     private MenuItem darktheme;
     @FXML
@@ -44,16 +47,25 @@ public class TestFXMLController implements Initializable {
     @FXML
     private Pane chronoPane;
     @FXML
-    private BorderPane borderPane;
+    private Label chrono;
+    @FXML
+    private Pane scorePane;
+    @FXML
+    private Label score;
+    
     
     
     private Grille taquin;
     private Grid grid;
     
+    private int nbMove;
+    
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		
+		grid = new Grid(4);
+		grid.setOnMouseClicked(grille_init.getOnMouseClicked());
+		grille_init = null;
 	}
 	
 	
@@ -68,25 +80,22 @@ public class TestFXMLController implements Initializable {
     }*/
 	
 	@FXML
-	void newGame(ActionEvent event) { // Action du bouton "New Game" dans le menu
+	void setNewGame(ActionEvent event) { // Action du bouton "New Game" dans le menu
 
 		taquin = new Grille(4);
 		
 		taquin.afficherGrille(); //debug
 		
 		Grid g = new Grid(taquin, "File:images/image");
-
-		if(grid == null) { // Cas où il s'agit de la première partie après le lancement de l'application
-			grid = g;
-			grid.setOnMouseClicked(grille_init.getOnMouseClicked());
-			grille_init = null; // Hello garbage collector
-		}
-		else {
-			g.setOnMouseClicked(grid.getOnMouseClicked());
-			grid = g;
-		}
-		grid.setGridLinesVisible(true);
+		g.setOnMouseClicked(grid.getOnMouseClicked());
+		grid = g;
+		
+		grid.setGridLinesVisible(false);
+		grid.setNumberVisible(buttonChiffres.getText().equals("Cacher les chiffres"));
 		borderPane.setCenter(grid);
+		
+		nbMove = 0;
+		score.setText("0");
 		
 		// Lancement du chrono
 		Timer timer = new Timer(6);
@@ -121,6 +130,19 @@ public class TestFXMLController implements Initializable {
 	}
     
     @FXML
+    void toggleChiffres(ActionEvent e) {
+    	String current = buttonChiffres.getText();
+    	if(current.equals("Afficher les chiffres")) {
+    		grid.setNumberVisible(true);
+    		buttonChiffres.setText("Cacher les chiffres");
+    	}
+    	if(current.equals("Cacher les chiffres")) {
+    		grid.setNumberVisible(false);
+    		buttonChiffres.setText("Afficher les chiffres");
+    	}
+    }
+    
+    @FXML
     void putDarkTheme(ActionEvent event) {
     	Main.scene.getStylesheets().clear();
     	Main.scene.getStylesheets().add("application/darkTheme.css");
@@ -148,6 +170,8 @@ public class TestFXMLController implements Initializable {
 			// On teste si la case vide et adjacente ï¿½ la case cliquï¿½e
 			grid.swapChildren(casex, casey, caseVideCol,caseVideRow);
 			taquin.echangerPieces(casex, casey, caseVideCol, caseVideRow);
+			
+			score.setText(Integer.toString(++nbMove));
 		}
 		taquin.afficherGrille(); //debug
 	}

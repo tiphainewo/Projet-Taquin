@@ -19,13 +19,13 @@ public class Case extends Pane {
 		
 		//Ajout du Label le chiffre � afficher
 		this.num = new Label(Integer.toString(number));
-		num.getStyleClass().add("case");
+		this.num.setVisible(false);
 		
 		//Ajout de l'ImageView contenant l'image
-		img = new ImageView();
-		img.setImage(new Image(imgPath));
-		img.setFitHeight(sizeImageView);
-		img.setFitWidth(sizeImageView);
+		this.img = new ImageView();
+		this.img.setImage(new Image(imgPath));
+		this.img.setFitHeight(sizeImageView);
+		this.img.setFitWidth(sizeImageView);
 		
 		
 		this.getChildren().add(img);
@@ -48,7 +48,7 @@ public class Case extends Pane {
 	}
 	
 	public void setNumberVisible (boolean visible) {
-		num.setVisible(visible);
+		this.num.setVisible(visible);
 	}
 	
 }
