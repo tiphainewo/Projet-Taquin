@@ -98,7 +98,7 @@ public class TestFXMLController implements Initializable {
 		score.setText("0");
 		
 		// Lancement du chrono
-		Timer timer = new Timer(6);
+		Timer timer = new Timer(0);
 	}
     
 	@FXML
@@ -117,13 +117,7 @@ public class TestFXMLController implements Initializable {
 		}
 		
 		private void timepass() {
-			if(temps>0) {
-				temps--;
-			}
-			else {
-				afficherFin();
-				animation.stop();
-			}
+			temps++;
 			s = temps+"";
 			chrono.setText(s);
 		}
