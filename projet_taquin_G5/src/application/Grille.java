@@ -82,6 +82,7 @@ public class Grille {
 				//Change les coordonnées de la pièce déplacée
 				tableau[coordTrou[0]][coordTrou[1]].setCoord(coordTrou);
 				coordTrou[1] += 1;
+				tableau[coordTrou[0]][coordTrou[1]].setCoord(coordTrou);
 			}
 			break;
 		case 1:
@@ -94,6 +95,7 @@ public class Grille {
 				tableau[coordTrou[0]][coordTrou[1]].setCoord(coordTrou);
 				
 				coordTrou[0] += 1;
+				tableau[coordTrou[0]][coordTrou[1]].setCoord(coordTrou);
 			}
 			break;
 		case 2:
@@ -106,6 +108,7 @@ public class Grille {
 				tableau[coordTrou[0]][coordTrou[1]].setCoord(coordTrou);
 				
 				coordTrou[1] -= 1;
+				tableau[coordTrou[0]][coordTrou[1]].setCoord(coordTrou);
 			}
 			break;
 		case 3:
@@ -118,6 +121,7 @@ public class Grille {
 				tableau[coordTrou[0]][coordTrou[1]].setCoord(coordTrou);
 				
 				coordTrou[0] -= 1;
+				tableau[coordTrou[0]][coordTrou[1]].setCoord(coordTrou);
 			}
 			break;
 		}
@@ -138,6 +142,7 @@ public class Grille {
 				//Change les coordonnées de la pièce déplacée
 				tableau[coordTrou[0]][coordTrou[1]].setCoord(coordTrou);
 				coordTrou[1] += 1;
+				tableau[coordTrou[0]][coordTrou[1]].setCoord(coordTrou);
 			}
 			break;
 		case 'q':
@@ -150,6 +155,7 @@ public class Grille {
 				tableau[coordTrou[0]][coordTrou[1]].setCoord(coordTrou);
 				
 				coordTrou[0] += 1;
+				tableau[coordTrou[0]][coordTrou[1]].setCoord(coordTrou);
 			}
 			break;
 		case 's':
@@ -162,6 +168,7 @@ public class Grille {
 				tableau[coordTrou[0]][coordTrou[1]].setCoord(coordTrou);
 				
 				coordTrou[1] -= 1;
+				tableau[coordTrou[0]][coordTrou[1]].setCoord(coordTrou);
 			}
 			break;
 		case 'd':
@@ -172,8 +179,8 @@ public class Grille {
 				
 				//Change les coordonnées de la pièce déplacée
 				tableau[coordTrou[0]][coordTrou[1]].setCoord(coordTrou);
-				
 				coordTrou[0] -= 1;
+				tableau[coordTrou[0]][coordTrou[1]].setCoord(coordTrou);
 			}
 			break;
 		}
@@ -190,6 +197,8 @@ public class Grille {
 		Piece temp = this.tableau[x][y];
 		this.tableau[x][y] = this.tableau[xfinal][yfinal];
 		this.tableau[xfinal][yfinal] = temp;
+		this.tableau[x][y].setCoord(new int[] {x,y});
+		this.tableau[xfinal][yfinal].setCoord(new int[] {xfinal,yfinal});
 		if (this.coordTrou[1] == y && this.coordTrou[0] == x) this.coordTrou = new int[] {xfinal,yfinal};
 		if (this.coordTrou[1] == yfinal && this.coordTrou[0] == xfinal) this.coordTrou = new int[] {x,y};
 		

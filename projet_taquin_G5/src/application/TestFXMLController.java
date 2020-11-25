@@ -166,6 +166,8 @@ public class TestFXMLController implements Initializable {
 			taquin.echangerPieces(casex, casey, caseVideCol, caseVideRow);
 			
 			score.setText(Integer.toString(++nbMove));
+			
+			if(taquin.isWon()) score.setText(score.getText()+" : Victoire");
 		}
 		taquin.afficherGrille(); //debug
 	}
