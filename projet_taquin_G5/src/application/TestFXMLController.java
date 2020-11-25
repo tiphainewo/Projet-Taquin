@@ -54,25 +54,43 @@ public class TestFXMLController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 		
-		taquin = new Grille(4);
-		
-		taquin.afficherGrille(); //debug
-		
-		grid = new Grid(taquin, "File:images/image");
-		grid.setGridLinesVisible(true);
-		grid.setOnMouseClicked(grille_init.getOnMouseClicked());
-		grille_init = null; // Hello garbage collector
-		borderPane.setCenter(grid);
 	}
+	
+	
 	/*
      * Mï¿½thodes appelï¿½es lors d'ï¿½vï¿½nements dans l'application (fichier .fxml)
      * Ces mï¿½thodes sont ajoutï¿½es ï¿½ la main et portent le mï¿½me nom que les fx:id dans Scene Builder
      */
 	
-	@FXML
+	/*@FXML
     void launchTimer(ActionEvent event) {
-    	Timer timer = new Timer(6);
-    }
+    	
+    }*/
+	
+	@FXML
+	void newGame(ActionEvent event) { // Action du bouton "New Game" dans le menu
+
+		taquin = new Grille(4);
+		
+		taquin.afficherGrille(); //debug
+		
+		Grid g = new Grid(taquin, "File:images/image");
+
+		if(grid == null) { // Cas où il s'agit de la première partie après le lancement de l'application
+			grid = g;
+			grid.setOnMouseClicked(grille_init.getOnMouseClicked());
+			grille_init = null; // Hello garbage collector
+		}
+		else {
+			g.setOnMouseClicked(grid.getOnMouseClicked());
+			grid = g;
+		}
+		grid.setGridLinesVisible(true);
+		borderPane.setCenter(grid);
+		
+		// Lancement du chrono
+		Timer timer = new Timer(6);
+	}
     
 	@FXML
     void afficherFin() {
@@ -101,6 +119,7 @@ public class TestFXMLController implements Initializable {
 			chrono.setText(s);
 		}
 	}
+    
     @FXML
     void putDarkTheme(ActionEvent event) {
     	Main.scene.getStylesheets().clear();
