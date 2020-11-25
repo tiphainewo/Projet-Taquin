@@ -190,8 +190,10 @@ public class Grille {
 		Piece temp = this.tableau[x][y];
 		this.tableau[x][y] = this.tableau[xfinal][yfinal];
 		this.tableau[xfinal][yfinal] = temp;
+		
 		if (this.coordTrou[1] == y && this.coordTrou[0] == x) this.coordTrou = new int[] {xfinal,yfinal};
 		if (this.coordTrou[1] == yfinal && this.coordTrou[0] == xfinal) this.coordTrou = new int[] {x,y};
+		
 		
 	}
 	

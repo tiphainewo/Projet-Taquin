@@ -1,6 +1,11 @@
 package application;
 
+import java.io.File;
 import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+import javafx.scene.control.Dialog;
 import java.util.ResourceBundle;
 
 import javafx.animation.KeyFrame;
@@ -12,9 +17,12 @@ import javafx.scene.control.*;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 
@@ -44,16 +52,24 @@ public class TestFXMLController implements Initializable {
     @FXML
     private Pane chronoPane;
     @FXML
-    private BorderPane borderPane;
+    private BorderPane borderPane; 
+    @FXML
+    private Button nouvellePartie;
+    @FXML
+    private AnchorPane dialog;
+    @FXML
+    private TextField numTaille;
     
     
     private Grille taquin;
     private Grid grid;
+    private String pathImage;
+    
+    
     
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		
 	}
 	
 	
@@ -69,13 +85,25 @@ public class TestFXMLController implements Initializable {
 	
 	@FXML
 	void newGame(ActionEvent event) { // Action du bouton "New Game" dans le menu
+		dialog.setVisible(false);
+		int tailleGrille=4;
+		if(numTaille.getText()!=null) {
+			try {
+				tailleGrille= Integer.parseInt(numTaille.getText());
+			} catch (NumberFormatException nfe){
+				
+			}
+		}
+		
+		//Découpe l'image à la bonne taille selon le nombre de cases
+		CutImage cutImage = new CutImage();
+		cutImage.decoupeImage(tailleGrille,pathImage);
 
-		taquin = new Grille(4);
+		taquin = new Grille(tailleGrille);
 		
 		taquin.afficherGrille(); //debug
 		
 		Grid g = new Grid(taquin, "File:images/image");
-
 		if(grid == null) { // Cas o� il s'agit de la premi�re partie apr�s le lancement de l'application
 			grid = g;
 			grid.setOnMouseClicked(grille_init.getOnMouseClicked());
@@ -130,6 +158,26 @@ public class TestFXMLController implements Initializable {
     void putSepiaTheme(ActionEvent event) {
     	Main.scene.getStylesheets().clear();
     	Main.scene.getStylesheets().add("application/sepiaTheme.css");
+    }
+    
+    @FXML
+    void openDialog(ActionEvent event) {
+    	dialog.setVisible(true);
+    }
+    
+    @FXML
+    void openFileChooser(ActionEvent event) {
+    	final FileChooser fileChooser = new FileChooser();
+    	fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("JPG", "*.jpg"),
+                new FileChooser.ExtensionFilter("PNG", "*.png")
+            );
+    	File selectedFile = fileChooser.showOpenDialog(fond.getScene().getWindow());
+    	if (selectedFile != null) {
+    		pathImage=selectedFile.getAbsolutePath();
+    	}
+ 
+        
     }
 
 	public void gridMouseClicked (MouseEvent me) {
