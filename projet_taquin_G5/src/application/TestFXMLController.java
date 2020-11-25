@@ -76,7 +76,7 @@ public class TestFXMLController implements Initializable {
 		
 		Grid g = new Grid(taquin, "File:images/image");
 
-		if(grid == null) { // Cas où il s'agit de la première partie après le lancement de l'application
+		if(grid == null) { // Cas oï¿½ il s'agit de la premiï¿½re partie aprï¿½s le lancement de l'application
 			grid = g;
 			grid.setOnMouseClicked(grille_init.getOnMouseClicked());
 			grille_init = null; // Hello garbage collector
@@ -89,7 +89,7 @@ public class TestFXMLController implements Initializable {
 		borderPane.setCenter(grid);
 		
 		// Lancement du chrono
-		Timer timer = new Timer(6);
+		Timer timer = new Timer(0);
 	}
     
 	@FXML
@@ -108,13 +108,7 @@ public class TestFXMLController implements Initializable {
 		}
 		
 		private void timepass() {
-			if(temps>0) {
-				temps--;
-			}
-			else {
-				afficherFin();
-				animation.stop();
-			}
+			temps++;
 			s = temps+"";
 			chrono.setText(s);
 		}
