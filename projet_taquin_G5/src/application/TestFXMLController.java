@@ -42,6 +42,8 @@ public class TestFXMLController implements Initializable {
     @FXML
     private MenuBar menu; // Menu
     @FXML
+    private MenuItem quitButton;
+    @FXML
     private MenuItem newGame;
     @FXML
     private MenuItem darktheme;
@@ -63,7 +65,8 @@ public class TestFXMLController implements Initializable {
     
     private Grille taquin;
     private Grid grid;
-    private String pathImage;
+    private String pathImage="images/image.jpg";
+    private Timer timer;
     
     
     
@@ -82,6 +85,11 @@ public class TestFXMLController implements Initializable {
     void launchTimer(ActionEvent event) {
     	
     }*/
+	
+	@FXML
+    void quitGame(ActionEvent event) {
+		System.exit(0);
+    }
 	
 	@FXML
 	void newGame(ActionEvent event) { // Action du bouton "New Game" dans le menu
@@ -117,7 +125,7 @@ public class TestFXMLController implements Initializable {
 		borderPane.setCenter(grid);
 		
 		// Lancement du chrono
-		Timer timer = new Timer(0);
+		timer = new Timer(0);
 	}
     
 	@FXML
