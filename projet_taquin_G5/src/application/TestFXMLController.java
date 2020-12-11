@@ -67,6 +67,7 @@ public class TestFXMLController implements Initializable {
     private Grid grid;
     private String pathImage="images/image.jpg";
     private Timer timer;
+    public Timeline animation;
     
     
     
@@ -125,15 +126,19 @@ public class TestFXMLController implements Initializable {
 		borderPane.setCenter(grid);
 		
 		// Lancement du chrono
+		if(animation!=null) {
+			animation.stop();
+		}
 		timer = new Timer(0);
 	}
     
-	@FXML
-    void afficherFin() {
-    	System.out.println("fin");
-    }
+	public void afficherFin(){
+		String temps=chrono.getText();
+		String phrase="Vous avez fini le puzzle en "+temps+" secondes!";
+		chrono.setText(phrase);
+	}
     class Timer extends Pane{
-		private Timeline animation;
+		
 		public int temps;
 		private String s = "";
 		private Timer(int t) {
