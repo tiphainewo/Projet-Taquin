@@ -33,6 +33,11 @@ public class Case extends Pane {
 		this.setVisible(visible);
 	}
 	
+	/**
+	 * Attribue une image a une case
+	 * @param size
+	 * @param imgPath
+	 */
 	public void setImage(int size, String imgPath) {
 		/** M�thode pas encore test�e
 		 * 

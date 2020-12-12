@@ -18,7 +18,7 @@
    <children>
       <Pane fx:id="fond" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="700.0" prefWidth="1000.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <BorderPane fx:id="borderPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="700.0" prefWidth="1000.0">
+            <BorderPane fx:id="borderPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="480.0" prefWidth="640.0">
                <top>
                   <MenuBar fx:id="menu" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="25.0" prefWidth="793.0" BorderPane.alignment="TOP_CENTER">
                     <menus>

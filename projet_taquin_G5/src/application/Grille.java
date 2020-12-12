@@ -29,7 +29,7 @@ public class Grille {
 		return this.tableau[col][ligne];
 	}
 
-	/*
+	/**
 	 * initialise la grille en créant toutes les pièces du tableau
 	 */
 	public void initTableau() {
@@ -55,7 +55,7 @@ public class Grille {
 		while(this.coordTrou[0] < this.taille - 1) this.movePiece('q');
 	}
 
-	/*
+	/**
 	 * Affiche la grille de manière textuelle
 	 */
 	public void afficherGrille() {
@@ -70,7 +70,10 @@ public class Grille {
 		}
 	}
 
-
+	/**
+	 * Deplace une piece selon la valeur de i
+	 * @param i peut prendre les valeurs 0, 1, 2 et 3
+	 */
 	public void movePiece(int i) {
 		Piece temp = null;
 		switch (i) {
@@ -123,11 +126,11 @@ public class Grille {
 		}
 	}
 	
-	public void movePiece(char c) {
-		/** D�place la pi�ce � proximit� du trou selon la valeur de c.
-		 * c peut prendre les valeurs `z`,`q`,`s`,`d`
-		 * 
-		 */
+	/** D�place la pi�ce � proximit� du trou selon la valeur de c.
+	 * c peut prendre les valeurs `z`,`q`,`s`,`d`
+	 * 
+	 */
+	public void movePiece(char c) {		
 		Piece temp = null;
 		switch (c) {
 		case 'z':
@@ -182,11 +185,15 @@ public class Grille {
 	}
 
 	
-	
-	public void echangerPieces (int x, int y, int xfinal, int yfinal) {
-		/** Echange la pi�ce situ�e aux coordon�es x,y
-		 * avec celle aux coordonn�es xfinal, yfinal.
-		 */
+	/**
+	 * Echange la pi�ce situ�e aux coordon�es x,y
+	 * avec celle aux coordonn�es xfinal, yfinal.
+	 * @param x
+	 * @param y
+	 * @param xfinal
+	 * @param yfinal
+	 */
+	public void echangerPieces (int x, int y, int xfinal, int yfinal) {	
 		Piece temp = this.tableau[x][y];
 		this.tableau[x][y] = this.tableau[xfinal][yfinal];
 		this.tableau[xfinal][yfinal] = temp;

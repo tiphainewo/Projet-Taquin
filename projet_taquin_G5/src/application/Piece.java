@@ -33,6 +33,10 @@ public class Piece {
 		return this.id;
 	}
 	
+	/**
+	 * Determine si une piece est a son emplacement final
+	 * @return vrai si elle est a son emplacement final, non sinon
+	 */
 	public boolean estEnPlace() {
 		return this.coord[0] == this.coordFinal[0] && this.coord[1] == this.coordFinal[1];
 	}

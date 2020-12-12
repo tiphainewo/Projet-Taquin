@@ -87,13 +87,21 @@ public class TestFXMLController implements Initializable {
     	
     }*/
 	
+	/**
+	 * Ferme la fenetre 
+	 * @param event : clic sur le bouton quitter
+	 */
 	@FXML
     void quitGame(ActionEvent event) {
 		System.exit(0);
     }
 	
+	/**
+	 * Lance la fenetre de nouvelle partie ou on choisit la taille et l'image
+	 * @param event : Action du bouton "New Game" dans le menu
+	 */
 	@FXML
-	void newGame(ActionEvent event) { // Action du bouton "New Game" dans le menu
+	void newGame(ActionEvent event) {
 		dialog.setVisible(false);
 		int tailleGrille=4;
 		if(numTaille.getText()!=null) {
@@ -137,6 +145,11 @@ public class TestFXMLController implements Initializable {
 		String phrase="Vous avez fini le puzzle en "+temps+" secondes!";
 		chrono.setText(phrase);
 	}
+	
+	/**
+	 * Crée une classe Timer a partir d'une animation
+	 *
+	 */
     class Timer extends Pane{
 		
 		public int temps;
@@ -155,6 +168,10 @@ public class TestFXMLController implements Initializable {
 		}
 	}
     
+    /**
+     * Les trois prochaines méthodes changent l'aspect de la fenêtre
+     * @param event : clic sur le bouton correspondant au theme
+     */
     @FXML
     void putDarkTheme(ActionEvent event) {
     	Main.scene.getStylesheets().clear();
@@ -173,11 +190,19 @@ public class TestFXMLController implements Initializable {
     	Main.scene.getStylesheets().add("application/sepiaTheme.css");
     }
     
+    /**
+     * Ouvre la fenetre de dialogue quand on lance une nouvelle partie
+     * @param event
+     */
     @FXML
     void openDialog(ActionEvent event) {
     	dialog.setVisible(true);
     }
     
+    /**
+     * Ouvre l'explorateur de fichier pour choisir une nouvelle image
+     * @param event : clic sur le bouton choisir une image
+     */
     @FXML
     void openFileChooser(ActionEvent event) {
     	final FileChooser fileChooser = new FileChooser();
@@ -193,6 +218,10 @@ public class TestFXMLController implements Initializable {
         
     }
 
+    /**
+     * Deplace les cases quand on clique dessus
+     * @param me
+     */
 	public void gridMouseClicked (MouseEvent me) {
 		int casex = (int) (me.getX()*grid.getColumnCount()/grid.getWidth());
 		int casey = (int) (me.getY()*grid.getRowCount()/grid.getHeight());

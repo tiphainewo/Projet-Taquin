@@ -62,9 +62,14 @@ public class Grid extends GridPane  {
 		for(Case c : this.getCaseChildren()) c.setNumberVisible(visible);
 	}
 	
+	/**
+	 * Renvoie la liste (�ventuellement vide) des enfants de la grid
+	 * qui se trouvent dans la case � la colonne col et la ligne row.
+	 * @param col
+	 * @param row
+	 * @return
+	 */
 	public ArrayList<Node> getChildrenAt(int col, int row) {
-		// Renvoie la liste (�ventuellement vide) des enfants de la grid
-		// qui se trouvent dans la case � la colonne col et la ligne row.
 		ArrayList<Node> list =  new ArrayList<>();
 		for(Node node : this.getChildren()) {
 			try {
@@ -79,6 +84,13 @@ public class Grid extends GridPane  {
 		return list;
 	}
 	
+	/**
+	 * Echange deux cases
+	 * @param colSource
+	 * @param rowSource
+	 * @param colTarget
+	 * @param rowTarget
+	 */
 	public void swapChildren(int colSource, int rowSource, int colTarget, int rowTarget) {
 		ArrayList<Node> source = this.getChildrenAt(colSource,rowSource);
 		ArrayList<Node> target = this.getChildrenAt(colTarget,rowTarget);

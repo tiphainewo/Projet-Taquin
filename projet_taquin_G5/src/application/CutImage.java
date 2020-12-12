@@ -12,6 +12,11 @@ public class CutImage {
 	public CutImage() {
 	}
 
+	/**
+	 * Decoupe une image donnée en carrés
+	 * @param dimension
+	 * @param source
+	 */
 	public void decoupeImage(int dimension, String source) {
 		try {
 
