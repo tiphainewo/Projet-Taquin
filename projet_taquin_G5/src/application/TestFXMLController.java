@@ -77,11 +77,7 @@ public class TestFXMLController implements Initializable {
      * M�thodes appel�es lors d'�v�nements dans l'application (fichier .fxml)
      * Ces m�thodes sont ajout�es � la main et portent le m�me nom que les fx:id dans Scene Builder
      */
-	
-	/*@FXML
-    void launchTimer(ActionEvent event) {
-    	
-    }*/
+
 	
 	/**
 	 * Ferme la fenetre 
@@ -103,6 +99,9 @@ public class TestFXMLController implements Initializable {
 		if(numTaille.getText()!=null) {
 			try {
 				tailleGrille= Integer.parseInt(numTaille.getText());
+				if (tailleGrille<2 || tailleGrille>8) {
+					tailleGrille=4;
+				}
 			} catch (NumberFormatException nfe){
 				
 			}
@@ -114,7 +113,6 @@ public class TestFXMLController implements Initializable {
 
 		taquin = new Grille(tailleGrille);
 		
-		taquin.afficherGrille(); //debug
 		
 		Grid g = new Grid(taquin, "File:images/image");
 		if(grid == null) { // Cas o� il s'agit de la premi�re partie apr�s le lancement de l'application
@@ -146,7 +144,7 @@ public class TestFXMLController implements Initializable {
 		}
 		chronoLabel.setText("");
 		String temps=chrono.getText();
-		String phrase="Vous avez fini le puzzle en "+temps+" secondes!";
+		String phrase="Vous avez fini \nle puzzle en "+temps+"\n secondes!";
 		chrono.setText(phrase);
 	}
 	
@@ -240,7 +238,7 @@ public class TestFXMLController implements Initializable {
 	        }
 	        if(taquin.isWon()) {
 	        	System.out.println("win");
-	        	grid.getChildren().add(new Case(15, grid.getTaille() - 1, grid.getTaille() - 1, 97,"File:images/image33.jpg", true));
+	        	grid.getChildren().add(new Case(15, grid.getTaille() - 1, grid.getTaille() - 1, 395/grid.getTaille(),"File:images/image33.jpg", true));
 	        	for(Case x : grid.getCaseChildren()) {
 	        		x.setNumberVisible(false);
 	        	}
@@ -248,8 +246,5 @@ public class TestFXMLController implements Initializable {
 	        	afficherFin();
 	        }
     	}
-    	
-        taquin.afficherGrille(); //debug
-        
     }
 }

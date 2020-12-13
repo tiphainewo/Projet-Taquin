@@ -30,6 +30,7 @@ public class Grid extends GridPane  {
 		this.taille = g.getTaille();
 		int caseVideCol = g.getCoordTrou()[0];
 		int caseVideRow = g.getCoordTrou()[1];
+		int tailleCase = 395/taille;
 		for (int i = 0; i < this.taille; i++) {
 			for (int j = 0; j < this.taille; j++) {
 				Piece piece = g.getPiece(j, i);
@@ -37,9 +38,7 @@ public class Grid extends GridPane  {
 				int coordFinalY = piece.getCoordFinal()[0];
 				String imageName=imgPath+coordFinalX+coordFinalY+".jpg";
 				this.getChildren().add(
-						new Case(
-						piece.getId(), j, i,
-						97, imageName,
+						new Case(piece.getId(), j, i,tailleCase, imageName,
 						!(i == caseVideCol && j == caseVideRow)
 						)
 				);
