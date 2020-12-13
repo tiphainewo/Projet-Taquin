@@ -59,6 +59,12 @@ public class TestFXMLController implements Initializable {
     private BorderPane borderPane;
     @FXML
     private Label victory;
+    @FXML
+    private Pane scorePane;
+    @FXML
+    private Label score;
+    @FXML
+    private MenuItem buttonChiffres;
     
     private Grille taquin;
     private Grid grid;
@@ -124,7 +130,8 @@ public class TestFXMLController implements Initializable {
 			g.setOnMouseClicked(grid.getOnMouseClicked());
 			grid = g;
 		}
-		grid.setGridLinesVisible(true);
+		grid.setGridLinesVisible(false);
+		grid.setNumberVisible(buttonChiffres.getText().equals("Cacher les chiffres"));
 		borderPane.setCenter(grid);
 		
 		// Lancement du chrono
@@ -135,6 +142,7 @@ public class TestFXMLController implements Initializable {
 		Timer timer = new Timer(0);
 		victory.setText("");
 		chronoLabel.setText("Temps écoulé");
+		score.setText("0");
 	}
     
 	public void afficherFin(){
@@ -169,6 +177,19 @@ public class TestFXMLController implements Initializable {
 			chrono.setText(s);
 		}
 	}
+    
+    @FXML
+    void toggleChiffres(ActionEvent e) {
+    	String current = buttonChiffres.getText();
+    	if(current.equals("Afficher les chiffres")) {
+    		grid.setNumberVisible(true);
+    		buttonChiffres.setText("Cacher les chiffres");
+    	}
+    	if(current.equals("Cacher les chiffres")) {
+    		grid.setNumberVisible(false);
+    		buttonChiffres.setText("Afficher les chiffres");
+    	}
+    }
     
     /**
      * Les trois prochaines méthodes changent l'aspect de la fenêtre
@@ -235,12 +256,15 @@ public class TestFXMLController implements Initializable {
 	            // On teste si la case vide et adjacente � la case cliqu�e
 	            grid.swapChildren(casex, casey, caseVideCol,caseVideRow);
 	            taquin.echangerPieces(casex, casey, caseVideCol, caseVideRow);
+	            
+	            score.setText(Integer.toString(1+Integer.parseInt(score.getText())));
 	        }
 	        if(taquin.isWon()) {
 	        	System.out.println("win");
-	        	grid.getChildren().add(new Case(15, grid.getTaille() - 1, grid.getTaille() - 1, 395/grid.getTaille(),"File:images/image33.jpg", true));
+	        	//grid.getChildren().add(new Case(15, grid.getTaille() - 1, grid.getTaille() - 1, 395/grid.getTaille(),"File:images/image33.jpg", true));
 	        	for(Case x : grid.getCaseChildren()) {
 	        		x.setNumberVisible(false);
+	        		x.setVisible(true);
 	        	}
 	        	
 	        	afficherFin();
