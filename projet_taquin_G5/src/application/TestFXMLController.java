@@ -2,12 +2,7 @@ package application;
 
 import java.io.File;
 import java.net.URL;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
-import javafx.scene.control.Dialog;
 import java.util.ResourceBundle;
-
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
@@ -22,7 +17,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 
 
@@ -69,7 +63,6 @@ public class TestFXMLController implements Initializable {
     private Grille taquin;
     private Grid grid;
     private String pathImage="images/image.jpg";
-    private Timer timer;
     public Timeline animation;
     
     
@@ -140,7 +133,8 @@ public class TestFXMLController implements Initializable {
 		if(animation!=null) {
 			animation.stop();
 		}
-		timer = new Timer(0);
+		@SuppressWarnings("unused")
+		Timer timer = new Timer(0);
 		victory.setText("");
 		chronoLabel.setText("Temps écoulé");
 	}

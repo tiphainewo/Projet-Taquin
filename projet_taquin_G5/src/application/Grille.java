@@ -45,7 +45,7 @@ public class Grille {
 		//randomise la grille
 		Random rand = new Random();
 		//char[] dirList = new char[] {'z','q','s','d'};
-		for (int i = 0; i < 7; i++) {
+		for (int i = 0; i < 1500; i++) {
 			//this.movePiece(dirList[rand.nextInt(4)]);
 			this.movePiece(rand.nextInt(4));
 		}
@@ -189,8 +189,6 @@ public class Grille {
 			}
 			break;
 		}
-		afficherGrille();
-
 	}
 
 	
