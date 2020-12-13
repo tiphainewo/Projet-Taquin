@@ -61,9 +61,9 @@
                <right>
                   <Pane prefHeight="455.0" prefWidth="120.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Pane id="chronoPane" fx:id="chronoPane" layoutX="33.0" layoutY="38.0" prefHeight="53.0" prefWidth="50.0">
+                        <Pane id="chronoPane" fx:id="chronoPane" layoutX="16.0" layoutY="39.0" prefHeight="53.0" prefWidth="89.0">
                            <children>
-                              <Label layoutX="4.0" layoutY="6.0" prefHeight="17.0" prefWidth="43.0" text="Chrono" textAlignment="CENTER" wrapText="true" />
+                              <Label fx:id="chronoLabel" layoutX="4.0" layoutY="6.0" prefHeight="17.0" prefWidth="82.0" text="Temps écoulé" textAlignment="CENTER" wrapText="true" />
                               <Label fx:id="chrono" layoutX="11.0" layoutY="31.0" textAlignment="CENTER" />
                            </children>
                         </Pane>

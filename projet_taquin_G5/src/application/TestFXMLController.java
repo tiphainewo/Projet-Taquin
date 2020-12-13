@@ -54,12 +54,14 @@ public class TestFXMLController implements Initializable {
     @FXML
     private Pane chronoPane;
     @FXML
+    private Label chronoLabel;
+    @FXML
     private Button nouvellePartie;
     @FXML
     private AnchorPane dialog;
     @FXML
     private TextField numTaille;
-    
+    @FXML
     private BorderPane borderPane;
     @FXML
     private Label victory;
@@ -140,9 +142,15 @@ public class TestFXMLController implements Initializable {
 		}
 		timer = new Timer(0);
 		victory.setText("");
+		chronoLabel.setText("Temps écoulé");
 	}
     
 	public void afficherFin(){
+		victory.setText("Victoire!");
+    	if(animation!=null) {
+			animation.stop();
+		}
+		chronoLabel.setText("");
 		String temps=chrono.getText();
 		String phrase="Vous avez fini le puzzle en "+temps+" secondes!";
 		chrono.setText(phrase);
@@ -242,10 +250,12 @@ public class TestFXMLController implements Initializable {
 	        	for(Case x : grid.getCaseChildren()) {
 	        		x.setNumberVisible(false);
 	        	}
-	        	victory.setText("Victoire!");
+	        	
+	        	afficherFin();
 	        }
     	}
     	
         taquin.afficherGrille(); //debug
+        
     }
 }
