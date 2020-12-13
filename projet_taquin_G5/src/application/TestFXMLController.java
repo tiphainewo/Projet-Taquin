@@ -54,14 +54,15 @@ public class TestFXMLController implements Initializable {
     @FXML
     private Pane chronoPane;
     @FXML
-    private BorderPane borderPane; 
-    @FXML
     private Button nouvellePartie;
     @FXML
     private AnchorPane dialog;
     @FXML
     private TextField numTaille;
     
+    private BorderPane borderPane;
+    @FXML
+    private Label victory;
     
     private Grille taquin;
     private Grid grid;
@@ -138,6 +139,7 @@ public class TestFXMLController implements Initializable {
 			animation.stop();
 		}
 		timer = new Timer(0);
+		victory.setText("");
 	}
     
 	public void afficherFin(){
@@ -218,21 +220,32 @@ public class TestFXMLController implements Initializable {
         
     }
 
-    /**
+	/**
      * Deplace les cases quand on clique dessus
      * @param me
      */
-	public void gridMouseClicked (MouseEvent me) {
-		int casex = (int) (me.getX()*grid.getColumnCount()/grid.getWidth());
-		int casey = (int) (me.getY()*grid.getRowCount()/grid.getHeight());
-		int caseVideCol = taquin.getCoordTrou()[0];
-		int caseVideRow = taquin.getCoordTrou()[1];
-		if((caseVideCol == casex && (caseVideRow == casey-1 || caseVideRow == casey+1)) 
-				||(caseVideRow == casey && (caseVideCol == casex-1 || caseVideCol == casex+1))) {
-			// On teste si la case vide et adjacente � la case cliqu�e
-			grid.swapChildren(casex, casey, caseVideCol,caseVideRow);
-			taquin.echangerPieces(casex, casey, caseVideCol, caseVideRow);
-		}
-		taquin.afficherGrille(); //debug
-	}
+    public void gridMouseClicked (MouseEvent me) {
+    	if(!taquin.isWon()) {
+	        int casex = (int) (me.getX()*grid.getColumnCount()/grid.getWidth());
+	        int casey = (int) (me.getY()*grid.getRowCount()/grid.getHeight());
+	        int caseVideCol = taquin.getCoordTrou()[0];
+	        int caseVideRow = taquin.getCoordTrou()[1];
+	        if((caseVideCol == casex && (caseVideRow == casey-1 || caseVideRow == casey+1)) 
+	                ||(caseVideRow == casey && (caseVideCol == casex-1 || caseVideCol == casex+1))) {
+	            // On teste si la case vide et adjacente � la case cliqu�e
+	            grid.swapChildren(casex, casey, caseVideCol,caseVideRow);
+	            taquin.echangerPieces(casex, casey, caseVideCol, caseVideRow);
+	        }
+	        if(taquin.isWon()) {
+	        	System.out.println("win");
+	        	grid.getChildren().add(new Case(15, grid.getTaille() - 1, grid.getTaille() - 1, 97,"File:images/image33.jpg", true));
+	        	for(Case x : grid.getCaseChildren()) {
+	        		x.setNumberVisible(false);
+	        	}
+	        	victory.setText("Victoire!");
+	        }
+    	}
+    	
+        taquin.afficherGrille(); //debug
+    }
 }

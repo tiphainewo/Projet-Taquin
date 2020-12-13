@@ -45,7 +45,7 @@ public class Grille {
 		//randomise la grille
 		Random rand = new Random();
 		//char[] dirList = new char[] {'z','q','s','d'};
-		for (int i = 0; i < 1500; i++) {
+		for (int i = 0; i < 7; i++) {
 			//this.movePiece(dirList[rand.nextInt(4)]);
 			this.movePiece(rand.nextInt(4));
 		}
@@ -68,6 +68,7 @@ public class Grille {
 				}
 			}
 		}
+		System.out.println("");
 	}
 
 	/**
@@ -85,6 +86,7 @@ public class Grille {
 				//Change les coordonnées de la pièce déplacée
 				tableau[coordTrou[0]][coordTrou[1]].setCoord(coordTrou);
 				coordTrou[1] += 1;
+				tableau[coordTrou[0]][coordTrou[1]].setCoord(coordTrou);
 			}
 			break;
 		case 1:
@@ -97,6 +99,7 @@ public class Grille {
 				tableau[coordTrou[0]][coordTrou[1]].setCoord(coordTrou);
 				
 				coordTrou[0] += 1;
+				tableau[coordTrou[0]][coordTrou[1]].setCoord(coordTrou);
 			}
 			break;
 		case 2:
@@ -109,6 +112,7 @@ public class Grille {
 				tableau[coordTrou[0]][coordTrou[1]].setCoord(coordTrou);
 				
 				coordTrou[1] -= 1;
+				tableau[coordTrou[0]][coordTrou[1]].setCoord(coordTrou);
 			}
 			break;
 		case 3:
@@ -121,6 +125,7 @@ public class Grille {
 				tableau[coordTrou[0]][coordTrou[1]].setCoord(coordTrou);
 				
 				coordTrou[0] -= 1;
+				tableau[coordTrou[0]][coordTrou[1]].setCoord(coordTrou);
 			}
 			break;
 		}
@@ -141,6 +146,7 @@ public class Grille {
 				//Change les coordonnées de la pièce déplacée
 				tableau[coordTrou[0]][coordTrou[1]].setCoord(coordTrou);
 				coordTrou[1] += 1;
+				tableau[coordTrou[0]][coordTrou[1]].setCoord(coordTrou);
 			}
 			break;
 		case 'q':
@@ -153,6 +159,7 @@ public class Grille {
 				tableau[coordTrou[0]][coordTrou[1]].setCoord(coordTrou);
 				
 				coordTrou[0] += 1;
+				tableau[coordTrou[0]][coordTrou[1]].setCoord(coordTrou);
 			}
 			break;
 		case 's':
@@ -165,6 +172,7 @@ public class Grille {
 				tableau[coordTrou[0]][coordTrou[1]].setCoord(coordTrou);
 				
 				coordTrou[1] -= 1;
+				tableau[coordTrou[0]][coordTrou[1]].setCoord(coordTrou);
 			}
 			break;
 		case 'd':
@@ -177,6 +185,7 @@ public class Grille {
 				tableau[coordTrou[0]][coordTrou[1]].setCoord(coordTrou);
 				
 				coordTrou[0] -= 1;
+				tableau[coordTrou[0]][coordTrou[1]].setCoord(coordTrou);
 			}
 			break;
 		}
@@ -185,39 +194,31 @@ public class Grille {
 	}
 
 	
-	/**
-	 * Echange la pi�ce situ�e aux coordon�es x,y
-	 * avec celle aux coordonn�es xfinal, yfinal.
-	 * @param x
-	 * @param y
-	 * @param xfinal
-	 * @param yfinal
-	 */
-	public void echangerPieces (int x, int y, int xfinal, int yfinal) {	
-		Piece temp = this.tableau[x][y];
-		this.tableau[x][y] = this.tableau[xfinal][yfinal];
-		this.tableau[xfinal][yfinal] = temp;
-		
-		if (this.coordTrou[1] == y && this.coordTrou[0] == x) this.coordTrou = new int[] {xfinal,yfinal};
-		if (this.coordTrou[1] == yfinal && this.coordTrou[0] == xfinal) this.coordTrou = new int[] {x,y};
-		
-		
-	}
+	
+	public void echangerPieces (int x, int y, int xfinal, int yfinal) {
+        /** Echange la pi�ce situ�e aux coordon�es x,y
+         * avec celle aux coordonn�es xfinal, yfinal.
+         */
+        Piece temp = this.tableau[x][y];
+        this.tableau[x][y] = this.tableau[xfinal][yfinal];
+        this.tableau[xfinal][yfinal] = temp;
+        this.tableau[x][y].setCoord(new int[] {x,y});
+        this.tableau[xfinal][yfinal].setCoord(new int[] {xfinal,yfinal});
+        if (this.coordTrou[1] == y && this.coordTrou[0] == x) this.coordTrou = new int[] {xfinal,yfinal};
+        if (this.coordTrou[1] == yfinal && this.coordTrou[0] == xfinal) this.coordTrou = new int[] {x,y};
+        
+    }
 	
 	public boolean isWon() {
-
-		boolean win = true;
-
 		for (int i = 0; i < taille; i++) {
 			for (int j = 0; j < taille; j++) {
 				if (!tableau[i][j].estEnPlace()) {
-					win = false;
-					break;
+					return false;
 				}
 			}
 		}
 
-		return win;
+		return true;
 
 	}
 }

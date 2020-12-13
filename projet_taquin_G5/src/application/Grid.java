@@ -48,6 +48,10 @@ public class Grid extends GridPane  {
 		
 	}
 	
+	public int getTaille() {
+		return taille;
+	}
+	
 	public ArrayList<Case> getCaseChildren() {
 		ArrayList<Case> caseList = new ArrayList<>();
 		for(Node n : this.getChildren()) {
