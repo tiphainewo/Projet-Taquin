@@ -87,6 +87,16 @@ public class Grid extends GridPane  {
 		return list;
 	}
 	
+	public ArrayList<Case> getCaseChildrenAt(int col, int row) {
+		ArrayList<Case> caseList =  new ArrayList<>();
+		for(Node n : this.getChildrenAt(col, row)) {
+			if (n instanceof Case) {
+				caseList.add((Case) n);
+			}
+		}
+		return caseList;
+	}
+	
 	/**
 	 * Echange deux cases
 	 * @param colSource

@@ -3,9 +3,13 @@ package application;
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import javafx.animation.Animation.Status;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -70,12 +74,15 @@ public class TestFXMLController implements Initializable {
     private Grid grid;
     private String pathImage="images/image.jpg";
     public Timeline animation;
+    public TranslateTransition tt;
+    private Case lastMovedCase;
     
     
     
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
+		tt = new TranslateTransition();
 	}
 	
 	
@@ -251,19 +258,77 @@ public class TestFXMLController implements Initializable {
 	        int casey = (int) (me.getY()*grid.getRowCount()/grid.getHeight());
 	        int caseVideCol = taquin.getCoordTrou()[0];
 	        int caseVideRow = taquin.getCoordTrou()[1];
-	        if((caseVideCol == casex && (caseVideRow == casey-1 || caseVideRow == casey+1)) 
-	                ||(caseVideRow == casey && (caseVideCol == casex-1 || caseVideCol == casex+1))) {
-	            // On teste si la case vide et adjacente ï¿½ la case cliquï¿½e
-	            grid.swapChildren(casex, casey, caseVideCol,caseVideRow);
+	        
+	        String direction = "";
+	        if(caseVideCol == casex && caseVideRow == casey-1) direction = "up";
+	        if(caseVideCol == casex && caseVideRow == casey+1) direction = "down";
+	        if(caseVideRow == casey && caseVideCol == casex-1) direction = "left";
+	        if(caseVideRow == casey && caseVideCol == casex+1) direction = "right";
+	        
+	        if(direction != "") {
+	        	
+	        	Case movingCase = grid.getCaseChildrenAt(casex, casey).get(0);
+	        	Case movingCase_copy = movingCase.deepCopy(buttonChiffres.getText().equals("Cacher les chiffres"));
+	            
+	        	grid.swapChildren(casex, casey, caseVideCol, caseVideRow);
 	            taquin.echangerPieces(casex, casey, caseVideCol, caseVideRow);
+	            
+	            grid.getChildren().add(movingCase_copy);
+
+	            if(!tt.getStatus().equals(Status.STOPPED)) { //Cas où une autre animation est encore en cours
+	            	try {
+	            		tt.getNode().setVisible(false);
+	            		grid.getChildren().remove(tt.getNode());
+	            		lastMovedCase.setVisible(true);
+	            	} catch(NullPointerException npe) {}
+	            }
+	            
+	            lastMovedCase = movingCase;
+	            lastMovedCase.setVisible(false);
+	            
+            	tt = new TranslateTransition(Duration.millis(250), movingCase_copy);
+
+            	tt.setOnFinished(
+            			new EventHandler<ActionEvent>() {
+            				public void handle(ActionEvent a) {
+             					tt.getNode().setVisible(false);
+            					grid.getChildren().remove(tt.getNode());
+            					lastMovedCase.setVisible(true);
+            				}
+            			}
+            			);
+	            
+	            switch(direction) {
+		            case "right":
+		            	tt.setByX(movingCase_copy.getImageSize());
+		            	tt.play();
+		            	break;
+		            case "left":
+		            	tt.setByX(-movingCase_copy.getImageSize());
+		            	tt.play();
+		            	break;
+		            case "up":
+		            	tt.setByY(-movingCase_copy.getImageSize());
+		            	tt.play();
+		            	break;
+		            case "down":
+		            	tt.setByY(movingCase_copy.getImageSize());
+		            	tt.play();
+		            	break;
+		            default:
+	            }
+	            
 	            
 	            score.setText(Integer.toString(1+Integer.parseInt(score.getText())));
 	        }
 	        if(taquin.isWon()) {
-	        	System.out.println("win");
-	        	//grid.getChildren().add(new Case(15, grid.getTaille() - 1, grid.getTaille() - 1, 395/grid.getTaille(),"File:images/image33.jpg", true));
+	        	//System.out.println("win");
+	        	
 	        	for(Case x : grid.getCaseChildren()) {
 	        		x.setNumberVisible(false);
+	        		//x.setVisible(true);
+	        	}
+	        	for(Case x : grid.getCaseChildrenAt(casex, casey)) {
 	        		x.setVisible(true);
 	        	}
 	        	

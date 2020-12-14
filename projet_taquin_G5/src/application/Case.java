@@ -10,6 +10,9 @@ public class Case extends Pane {
 	
 	private Label num;
 	private ImageView img;
+	
+	private int imageSize;
+	private String imagePath;
 
 	public Case(int number, int x, int y, int sizeImageView, String imgPath, boolean visible) {
 		
@@ -26,11 +29,36 @@ public class Case extends Pane {
 		img.setImage(new Image(imgPath));
 		img.setFitHeight(sizeImageView);
 		img.setFitWidth(sizeImageView);
+		this.imageSize = sizeImageView;
+		this.imagePath = imgPath;
 		
 		
 		this.getChildren().add(img);
 		this.getChildren().add(num);
 		this.setVisible(visible);
+	}
+	
+	public Label getLabel() {
+		return this.num;
+	}
+	
+	public ImageView getImageView() {
+		return this.img;
+	}
+	
+	public int getImageSize() {
+		return this.imageSize;
+		
+	}
+	
+	public Case deepCopy(boolean label_visible) {
+		Case copy =  new Case(
+				Integer.parseInt(this.num.getText()),
+				GridPane.getColumnIndex(this), GridPane.getRowIndex(this),
+				this.imageSize, this.imagePath, this.isVisible()
+				);
+		copy.getLabel().setVisible(label_visible);;
+		return copy;
 	}
 	
 	/**
@@ -39,9 +67,6 @@ public class Case extends Pane {
 	 * @param imgPath
 	 */
 	public void setImage(int size, String imgPath) {
-		/** M�thode pas encore test�e
-		 * 
-		 */
 		ImageView newImg = new ImageView();
 		newImg.setImage(new Image(imgPath));
 		newImg.setFitHeight(size);
