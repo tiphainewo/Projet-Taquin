@@ -1,47 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.TestFXMLController">
    <children>
       <Pane fx:id="fond" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="480.0" prefWidth="640.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="480.0" prefWidth="640.0">
+            <BorderPane fx:id="borderPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="480.0" prefWidth="640.0">
                <top>
-                  <MenuBar fx:id="menu" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" BorderPane.alignment="TOP_CENTER">
+                  <MenuBar fx:id="menu" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="25.0" prefWidth="640.0" BorderPane.alignment="TOP_CENTER">
                     <menus>
-                      <Menu mnemonicParsing="false" text="File">
+                      <Menu mnemonicParsing="false" text="Partie">
                         <items>
-                          <MenuItem mnemonicParsing="false" text="Close" />
+                              <MenuItem fx:id="newGame" mnemonicParsing="false" onAction="#openDialog" text="Nouvelle partie" />
+                          <MenuItem fx:id="quitButton" mnemonicParsing="false" onAction="#quitGame" text="Quitter" />
                         </items>
                       </Menu>
-                      <Menu mnemonicParsing="false" text="Edit">
+					  <Menu mnemonicParsing="false" text="View">
                         <items>
-                          <MenuItem mnemonicParsing="false" text="Delete" />
+                          <MenuItem fx:id="buttonChiffres" mnemonicParsing="false" onAction="#toggleChiffres" text="Afficher les chiffres" />
                         </items>
                       </Menu>
-                      <Menu mnemonicParsing="false" text="Help">
+                      <Menu mnemonicParsing="false" text="Thèmes">
                         <items>
-                          <MenuItem mnemonicParsing="false" text="About" />
+                          <MenuItem fx:id="darktheme" mnemonicParsing="false" onAction="#putDarkTheme" onMenuValidation="#putDarkTheme" text="Thème sombre" />
+                              <MenuItem fx:id="lightTheme" mnemonicParsing="false" onAction="#putLightTheme" onMenuValidation="#putLightTheme" text="Thème clair" />
+                              <MenuItem fx:id="sepiaTheme" mnemonicParsing="false" onAction="#putSepiaTheme" onMenuValidation="#putSepiaTheme" text="Thème sepia" />
                         </items>
                       </Menu>
                     </menus>
                   </MenuBar>
                </top>
                <center>
-                  <GridPane fx:id="grille" gridLinesVisible="true" BorderPane.alignment="CENTER">
+                  <GridPane fx:id="grille_init" gridLinesVisible="true" maxHeight="400.0" maxWidth="400.0" minHeight="400.0" minWidth="400.0" onMouseClicked="#gridMouseClicked" prefHeight="400.0" prefWidth="400.0" visible="false" BorderPane.alignment="CENTER">
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -57,177 +61,21 @@
                      <BorderPane.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </BorderPane.margin>
-                     <children>
-                        <StackPane fx:id="case_00">
-                           <children>
-                              <Pane prefHeight="200.0" prefWidth="200.0" />
-                              <Label text="1" textAlignment="CENTER">
-                                 <font>
-                                    <Font name="System Bold" size="24.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </StackPane>
-                        <StackPane fx:id="case_10" GridPane.columnIndex="1">
-                           <children>
-                              <Pane prefHeight="200.0" prefWidth="200.0" />
-                              <Label text="2" textAlignment="CENTER">
-                                 <font>
-                                    <Font name="System Bold" size="24.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </StackPane>
-                        <StackPane fx:id="case_20" GridPane.columnIndex="2">
-                           <children>
-                              <Pane prefHeight="200.0" prefWidth="200.0" />
-                              <Label text="3" textAlignment="CENTER">
-                                 <font>
-                                    <Font name="System Bold" size="24.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </StackPane>
-                        <StackPane fx:id="case_30" GridPane.columnIndex="3">
-                           <children>
-                              <Pane prefHeight="200.0" prefWidth="200.0" />
-                              <Label text="4" textAlignment="CENTER">
-                                 <font>
-                                    <Font name="System Bold" size="24.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </StackPane>
-                        <StackPane fx:id="case_01" GridPane.rowIndex="1">
-                           <children>
-                              <Pane prefHeight="200.0" prefWidth="200.0" />
-                              <Label text="5" textAlignment="CENTER">
-                                 <font>
-                                    <Font name="System Bold" size="24.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </StackPane>
-                        <StackPane fx:id="case_11" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                           <children>
-                              <Pane prefHeight="200.0" prefWidth="200.0" />
-                              <Label text="6" textAlignment="CENTER">
-                                 <font>
-                                    <Font name="System Bold" size="24.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </StackPane>
-                        <StackPane fx:id="case_21" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                           <children>
-                              <Pane prefHeight="200.0" prefWidth="200.0" />
-                              <Label text="7" textAlignment="CENTER">
-                                 <font>
-                                    <Font name="System Bold" size="24.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </StackPane>
-                        <StackPane fx:id="case_31" GridPane.columnIndex="3" GridPane.rowIndex="1">
-                           <children>
-                              <Pane prefHeight="200.0" prefWidth="200.0" />
-                              <Label text="8" textAlignment="CENTER">
-                                 <font>
-                                    <Font name="System Bold" size="24.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </StackPane>
-                        <StackPane fx:id="case_02" GridPane.rowIndex="2">
-                           <children>
-                              <Pane prefHeight="200.0" prefWidth="200.0" />
-                              <Label text="9" textAlignment="CENTER">
-                                 <font>
-                                    <Font name="System Bold" size="24.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </StackPane>
-                        <StackPane fx:id="case_12" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                           <children>
-                              <Pane prefHeight="200.0" prefWidth="200.0" />
-                              <Label text="10" textAlignment="CENTER">
-                                 <font>
-                                    <Font name="System Bold" size="24.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </StackPane>
-                        <StackPane fx:id="case_22" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                           <children>
-                              <Pane prefHeight="200.0" prefWidth="200.0" />
-                              <Label text="11" textAlignment="CENTER">
-                                 <font>
-                                    <Font name="System Bold" size="24.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </StackPane>
-                        <StackPane fx:id="case_32" GridPane.columnIndex="3" GridPane.rowIndex="2">
-                           <children>
-                              <Pane prefHeight="200.0" prefWidth="200.0" />
-                              <Label text="12" textAlignment="CENTER">
-                                 <font>
-                                    <Font name="System Bold" size="24.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </StackPane>
-                        <StackPane fx:id="case_03" GridPane.rowIndex="3">
-                           <children>
-                              <Pane prefHeight="200.0" prefWidth="200.0" />
-                              <Label text="13" textAlignment="CENTER">
-                                 <font>
-                                    <Font name="System Bold" size="24.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </StackPane>
-                        <StackPane fx:id="case_13" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                           <children>
-                              <Pane prefHeight="200.0" prefWidth="200.0" />
-                              <Label text="14" textAlignment="CENTER">
-                                 <font>
-                                    <Font name="System Bold" size="24.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </StackPane>
-                        <StackPane fx:id="case_23" GridPane.columnIndex="2" GridPane.rowIndex="3">
-                           <children>
-                              <Pane prefHeight="200.0" prefWidth="200.0" />
-                              <Label text="15" textAlignment="CENTER">
-                                 <font>
-                                    <Font name="System Bold" size="24.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </StackPane>
-                        <StackPane fx:id="case_33" GridPane.columnIndex="3" GridPane.rowIndex="3">
-                           <children>
-                              <Pane prefHeight="200.0" prefWidth="200.0" />
-                              <Label textAlignment="CENTER">
-                                 <font>
-                                    <Font name="System Bold" size="24.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </StackPane>
-                     </children>
                   </GridPane>
                </center>
                <right>
                   <Pane prefHeight="455.0" prefWidth="120.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Pane layoutX="33.0" layoutY="38.0" prefHeight="53.0" prefWidth="50.0" style="-fx-background-color: pink;">
+                        <Pane id="chronoPane" fx:id="chronoPane" layoutX="16.0" layoutY="39.0" prefHeight="53.0" prefWidth="89.0">
                            <children>
-                              <Label layoutX="4.0" layoutY="6.0" prefHeight="17.0" prefWidth="43.0" text="Chrono" textAlignment="CENTER" wrapText="true" />
-                              <Label fx:id="chrono" layoutX="11.0" layoutY="31.0" text="00:00" textAlignment="CENTER" />
+                              <Label fx:id="chronoLabel" layoutX="4.0" layoutY="6.0" prefHeight="17.0" prefWidth="82.0" text="Temps écoulé" textAlignment="CENTER" wrapText="true" />
+                              <Label fx:id="chrono" layoutX="11.0" layoutY="31.0" textAlignment="CENTER" />
+                           </children>
+                        </Pane>
+						<Pane id="scorePane" fx:id="scorePane" layoutX="16.0" layoutY="171.0" prefHeight="53.0" prefWidth="89.0">
+                           <children>
+                              <Label fx:id="scoreLabel" alignment="CENTER" layoutX="4.0" layoutY="6.0" prefHeight="17.0" prefWidth="43.0" text="Score" wrapText="true" />
+                              <Label fx:id="score" layoutX="11.0" layoutY="31.0" textAlignment="CENTER" />
                            </children>
                         </Pane>
                      </children></Pane>
@@ -236,10 +84,33 @@
                   <Pane prefHeight="455.0" prefWidth="120.0" BorderPane.alignment="CENTER" />
                </left>
                <bottom>
-                  <Pane prefHeight="60.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+                  <Pane prefHeight="60.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label fx:id="victory" layoutX="292.0" layoutY="13.0" textFill="#1bff82">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                     </children></Pane>
                </bottom>
             </BorderPane>
          </children>
       </Pane>
+      <AnchorPane fx:id="dialog" layoutX="30.0" layoutY="41.0" prefHeight="407.0" prefWidth="584.0" visible="false">
+         <children>
+            <Pane layoutX="59.0" layoutY="43.0" prefHeight="321.0" prefWidth="467.0" style="-fx-border-color: black;">
+               <children>
+                  <MenuBar />
+                  <Label layoutX="110.0" layoutY="72.0" prefHeight="39.0" prefWidth="102.0" text="Taille de la grille :" />
+                  <TextField fx:id="numTaille" layoutX="234.0" layoutY="79.0" prefHeight="25.0" prefWidth="37.0" />
+                  <Button fx:id="nouvellePartie" layoutX="170.0" layoutY="259.0" mnemonicParsing="false" onAction="#newGame" text="Nouvelle Partie" />
+                  <Button layoutX="162.0" layoutY="142.0" mnemonicParsing="false" onAction="#openFileChooser" text="Choisir une image" />
+                  <MenuBar layoutY="-4.0" prefHeight="31.0" prefWidth="467.0" stylesheets="@application.css" />
+                  <Label layoutX="152.0" layoutY="45.0" text="Taille par défaut : 4" />
+                  <Label layoutX="290.0" layoutY="83.0" text="(entre 2 et 8)" />
+               </children>
+            </Pane>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

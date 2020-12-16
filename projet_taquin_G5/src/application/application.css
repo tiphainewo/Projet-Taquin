@@ -1,1 +1,30 @@
-/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+*{
+	-fx-text-fill: black; 
+}
+Label, Pane{
+	-fx-background-color: white; 
+}
+
+#chronoPane{
+	-fx-background-color: white;
+}
+
+.context-menu{
+	-fx-background-color: white; 
+}
+.menu-item:focused, .menu:hover, .menu:showing{
+	-fx-background-color: lightblue; 
+}
+
+MenuBar{
+	-fx-background-color: linear-gradient(#f2f2f2, #d6d6d6),
+						linear-gradient(#fcfcfc 0%, #d9d9d9 20%, #d6d6d6 100%),
+						 linear-gradient(#dddddd 0%, #f6f6f6 50%);
+}
+/*
+.case {
+    -fx-text-fill: #6666FF;
+    -fx-font-size: 42;
+	-fx-padding: 26 40 26 40;
+}
+*  */
